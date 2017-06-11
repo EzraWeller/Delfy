@@ -1,4 +1,6 @@
-# README
+# DELFY README
+
+Delfy is a web app for organizing large communities that want to be democratic. It helps distill the most popular practical suggestions from a sea of opinions.
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
