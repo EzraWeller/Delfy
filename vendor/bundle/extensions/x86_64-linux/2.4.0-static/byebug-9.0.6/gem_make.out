@@ -1,0 +1,19 @@
+current directory: /home/ezra/workspace/Delfy/vendor/bundle/gems/byebug-9.0.6/ext/byebug
+/usr/local/bin/ruby -r ./siteconf20170613-6728-vpv8jk.rb extconf.rb
+creating Makefile
+
+current directory: /home/ezra/workspace/Delfy/vendor/bundle/gems/byebug-9.0.6/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /home/ezra/workspace/Delfy/vendor/bundle/gems/byebug-9.0.6/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.so
+
+current directory: /home/ezra/workspace/Delfy/vendor/bundle/gems/byebug-9.0.6/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.so ./.gem.20170613-6728-nq4902/byebug

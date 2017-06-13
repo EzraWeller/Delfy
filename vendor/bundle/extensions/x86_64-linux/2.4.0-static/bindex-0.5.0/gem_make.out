@@ -1,0 +1,15 @@
+current directory: /home/ezra/workspace/Delfy/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+/usr/local/bin/ruby -r ./siteconf20170613-6728-w2kcon.rb extconf.rb
+creating Makefile
+
+current directory: /home/ezra/workspace/Delfy/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /home/ezra/workspace/Delfy/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.so
+
+current directory: /home/ezra/workspace/Delfy/vendor/bundle/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20170613-6728-1o7pr7f/bindex
