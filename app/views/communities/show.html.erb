@@ -1,2 +1,6 @@
 <p><%= @community.name %></p>
+<%= form_for(current_user.memberships.build) do |f| %>
+  <div><%= hidden_field_tag :community_id, @community.id %></div>
+  <%= f.submit "Join" %>
+<% end %>
 <p><%= link_to 'Home', root_path %></p>

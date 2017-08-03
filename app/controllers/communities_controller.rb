@@ -1,4 +1,6 @@
 class CommunitiesController < ApplicationController
+	
+
 	def show
     	@community = Community.find(params[:id])
     end
@@ -10,6 +12,7 @@ class CommunitiesController < ApplicationController
 	def create
 		@community = Community.new(community_params)
 		if @community.save
+			current_user.join(@community)
 			flash[:success] = "New community, #{@community.name}, created!"
     		redirect_to @community
 		else

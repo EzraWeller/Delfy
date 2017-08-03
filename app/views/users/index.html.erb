@@ -2,8 +2,7 @@
 <div>
   <% @users.each do |i| %>
     <p>
-      <%= i.name %>
-      <%= i.email %>
+      <%= link_to "#{i.name}", user_path(id: i.id) %>
     </p>
   <% end %>
 </div>

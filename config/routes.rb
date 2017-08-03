@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   post   '/login',  		  to: 'sessions#create'
   delete '/logout',  		  to: 'sessions#destroy'
   post   '/communities/new',  to: 'communities#create'
-  resources :users
+  resources :users do
+  	member do
+  		get :memberships
+  	end
+  end
   resources :communities
+  resources :memberships, only: [:create, :destroy]
 end

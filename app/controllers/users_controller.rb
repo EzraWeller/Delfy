@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
+  
+
   def show
     @user = User.find(params[:id])
+    @community = Community.find_by(id: 1)
+    @leadcommunities = Community.all.where(leader: @user.id)
   end
 
   def new
