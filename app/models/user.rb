@@ -20,4 +20,14 @@ class User < ApplicationRecord
     communities << community
   end
 
+  # Leaves a community.
+  def leave(community)
+    communities.delete(community)
+  end
+
+  # Returns true if the user is a member of the community.
+  def member_of?(community)
+    communities.include?(community)
+  end
+
 end

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post   '/communities/new',  to: 'communities#create'
   resources :users do
   	member do
-  		get :memberships
+  		get :communities
   	end
   end
   resources :communities
