@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-	
+	before_action :logged_in_user, only: [:create, :new, :show]
 
 	def show
     	@community = Community.find(params[:id])
