@@ -1,10 +1,10 @@
 <% @user ||= current_user %>
 <div class="stats">
-  <strong class="stat">
+  <strong id="communitycount" class="stat">
     <%= @user.communities.count %>
   </strong>
   communities
-  <strong class="stat">
+  <strong id="ideacount" class="stat">
     <%= @user.ideas.count %>
   </strong>
   ideas submitted
