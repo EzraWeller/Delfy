@@ -1,4 +1,11 @@
-<p><%= @community.name %></p>
+<h1><%= @community.name %></h1>
 <p><%= @community.description %></p>
 <p><%= render 'joinleave_form' %></p>
+<p><%= render 'ideas/idea_form' %></p>
+<h2>Ideas</h2>
+<% @community.ideas.each do |i| %>
+		<p><%= "#{User.find_by(id: i.user_id).name}" %></p>
+		<p>"<%= i.content %>"</p>
+		<p>Posted <%= time_ago_in_words(i.created_at) %> ago.</p>
+<% end %>
 <p><%= link_to 'Home', root_path %></p>

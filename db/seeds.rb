@@ -10,3 +10,14 @@ User.create!(name:  "Admin Boy",
              email: "admin@gmail.com",
              password:              "password",
              password_confirmation: "password")
+
+Community.create!(name: "Baltimore City",
+	              description: "County in Maryland, USA",
+	              leader: 1)
+
+3.times do |n|
+	Idea.create!(user_id: 1,
+	             community_id: 1,
+	             content: "It's post number #{n+1}!",
+	             created_at: (0+n).days.ago)
+end

@@ -1,5 +1,5 @@
 <div id="joinleave_form">
-    <% if current_user.member_of?(@community) %>
+    <% if current_community.users.include?(current_user) %>
     	<%= render 'leave' %>
     <% else %>
     	<%= render 'join' %>

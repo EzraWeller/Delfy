@@ -7,8 +7,16 @@ class ApplicationController < ActionController::Base
   	def logged_in_user
     	unless logged_in?
     		store_location
-      		flash[:danger] = "Please log in."
-      		redirect_to login_url
+        flash[:danger] = "Please log in."
+      	redirect_to login_url
     	end
   	end
+
+    def community_member
+      unless user_community_member?
+        flash[:danger] = "Please join community."
+        redirect_to current_community
+      end
+    end
+
 end

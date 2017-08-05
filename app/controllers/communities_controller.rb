@@ -3,6 +3,8 @@ class CommunitiesController < ApplicationController
 
 	def show
     	@community = Community.find(params[:id])
+    	select_community(@community)
+      	@idea = current_user.ideas.build
     end
 	
 	def new

@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   end
   resources :communities
   resources :memberships, only: [:create, :destroy]
+  resources :ideas,       only: [:create, :destroy]
 end

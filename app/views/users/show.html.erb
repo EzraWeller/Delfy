@@ -8,4 +8,12 @@
 <% @user.communities.each do |c| %>
 	<p><%= link_to "#{c.name}", community_path(id: c.id) %></p>
 <% end %>
+<h2><%= "#{@user.name}" %>'s Ideas:</h2>
+<% @user.ideas.each do |i| %>
+	<p>
+		"<%= i.content %>" 
+		Community: <%= link_to "#{Community.find_by(id: i.community_id).name}", 
+	                   community_path(id: i.community_id) %>
+	</p>
+<% end %>
 <p><%= link_to "Home", root_path %></p>
