@@ -1,5 +1,4 @@
-<h1><%= @user.name %></h1>
-<p><%= @user.email %></p>
+<p>User page for: </p><%= render 'user_chunk' %>
 <h2>Community Leader of:</h2>
 <% @leadcommunities.each do |l| %>
 	<p><%= link_to "#{l.name}", community_path(id: l.id) %></p>

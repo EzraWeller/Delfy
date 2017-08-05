@@ -1,1 +1,2 @@
 $("#joinleave_form").html("<%= escape_javascript(render('communities/join')) %>");
+$("#communitycount").html('<%= current_user.communities.count %>');
