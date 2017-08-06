@@ -1,0 +1,8 @@
+<h1><%= current_community.name %></h1>
+<p><%= current_community.description %></p>
+<h2>Ideas</h2>
+<% current_community.ideas.each do |i| %>
+	<p>"<%= i.content %>"</p>
+	<p><%= "#{User.find_by(id: i.user_id).name}" %></p>
+	<p>Posted <%= time_ago_in_words(i.created_at) %> ago.</p>
+<% end %>

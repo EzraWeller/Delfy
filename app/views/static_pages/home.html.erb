@@ -1,5 +1,15 @@
 <h1>Delfy</h1>
 <% if logged_in? %>
+	<p><%= render 'shared/user_chunk' %></p>
+	<ul>
+		<p>Select one of your communities:</p>
+		<% @user.communities.each do |c| %>
+			<li><%= button_to "#{c.name}", select_community_path(@community), 
+			        params: { community_id: c.id }, remote: true %></li>
+		<% end %>
+	</ul>
+	<h2>Community Feed:</h2>
+	<p id="community_feed">-feed-</p>
 	<p><%= link_to "Create community", new_community_path %></p>
 	<p><%= link_to "Community Index",  communities_path %></p>
 	<p><%= link_to "User Index",       index_path %></p>
