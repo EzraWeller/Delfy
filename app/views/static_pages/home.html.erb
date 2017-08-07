@@ -4,8 +4,9 @@
 	<ul>
 		<p>Select one of your communities:</p>
 		<% @user.communities.each do |c| %>
-			<li><%= button_to "#{c.name}", select_community_path(@community), 
-			        params: { community_id: c.id }, remote: true %></li>
+			<li><%= button_to "#{c.name}", { action: select_community_path(@community), 
+			        community_id: c.id, :disabled => current_community == c, remote: true }, 
+			        {class: 'community_select_button'} %></li>
 		<% end %>
 	</ul>
 	<h2>Community Feed:</h2>
