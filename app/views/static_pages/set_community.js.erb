@@ -1,2 +1,2 @@
-$("#community_feed").html('<%= escape_javascript(render('shared/community_feed')) %>');
-$(".community_select_button").html('<% current_community %>')
+$("#community_feed").html("<%= escape_javascript(render('shared/community_feed')) %>");
+$("#community_selector").load(location.href+" #community_selector>*","");
