@@ -8,4 +8,8 @@
     <%= @user.ideas.count %>
   </strong>
   ideas submitted
+  <strong id="votecount" class="stat">
+    <%= @user.votes.where(community_id: current_community.id).count %>
+  </strong>
+  votes in current community
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803233723) do
+ActiveRecord::Schema.define(version: 20170808141317) do
 
   create_table "communities", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 20170803233723) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "user_id"
+    t.integer  "community_id"
+    t.integer  "idea_id"
+    t.index ["community_id", "created_at"], name: "index_votes_on_community_id_and_created_at"
+    t.index ["idea_id", "created_at"], name: "index_votes_on_idea_id_and_created_at"
+    t.index ["user_id", "created_at"], name: "index_votes_on_user_id_and_created_at"
   end
 
 end

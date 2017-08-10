@@ -1,2 +1,3 @@
 $("#community_feed").html("<%= escape_javascript(render('shared/community_feed')) %>");
 $("#community_selector").load(location.href+" #community_selector>*","");
+$("#votecount").html("<%= current_user.votes.where(community_id: current_community.id).count %>");

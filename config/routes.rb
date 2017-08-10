@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root                  		      'static_pages#home'
   post   '/select_community', to: 'static_pages#set_community', 
-                                  as: 'select_community'
+                                   as: 'select_community'
   get    '/signup', 		      to: 'users#new'
   post   '/signup',			      to: 'users#create'
   get    '/index',  		      to: 'users#index'
@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   resources :communities
   resources :memberships, only: [:create, :destroy]
   resources :ideas,       only: [:create, :destroy]
+  resources :votes,       only: [:create, :destroy]
 end

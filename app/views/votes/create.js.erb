@@ -1,0 +1,2 @@
+$("#community_feed").load(location.href+" #community_feed>*","");
+$("#votecount").html('<%= current_user.votes.where(community_id: current_community.id).count %>');

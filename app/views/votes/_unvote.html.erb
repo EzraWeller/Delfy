@@ -1,0 +1,6 @@
+<%= form_for(:vote, url: vote_path(Vote.find_by(user_id: current_user.id, idea_id: i.id)),
+	html: { method: :delete }, remote: true) do |f| %>
+	<%= f.hidden_field :user_id, value: current_user.id %>
+	<%= f.hidden_field :idea_id, value: @idea_id %>
+	<%= f.submit "Unvote" %>
+<% end %>
