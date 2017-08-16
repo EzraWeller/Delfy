@@ -1,0 +1,5 @@
+<% if current_user.votes.where(idea: idea).exists? %>
+	<%= button_to "Manage Vote", show_branch_feed_path, params: {idea: idea}, remote: true %>
+<% else %>
+	<%= button_to "Vote", show_branch_feed_path, params: {idea: idea}, remote: true %>
+<% end %>

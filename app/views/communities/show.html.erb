@@ -2,7 +2,5 @@
 <p><%= @community.description %></p>
 <p>Logged in as: </p><%= render 'shared/user_chunk' %>
 <p><%= render 'joinleave_form' %></p>
-<p><%= render 'ideas/idea_form' %></p>
-<h2>Ideas</h2>
-<%= render 'shared/community_feed' %>
+<div id="community_feed"><%= render 'shared/community_feed' %></div>
 <p><%= link_to 'Home', root_path %></p>

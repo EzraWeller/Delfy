@@ -8,6 +8,14 @@ module SessionsHelper
 		session[:community_id] = community.id
 	end
 
+	def sort_ideas_by(style)
+		session[:idea_sort_style] = style
+	end
+
+	def sort_branch_ideas_by(idea_id, style)
+		session[:idea_id] = style
+	end
+
 	def current_user
 		@current_user ||= User.find_by(id: session[:user_id])
 	end
@@ -16,12 +24,20 @@ module SessionsHelper
 		@current_community ||= Community.find_by(id: session[:community_id])
 	end
 
+	def idea_sort_style
+		@idea_sort_style ||= session[:idea_sort_style]
+	end
+
+	def branch_idea_sort_style(idea_id)
+		@branch_idea_sort_style ||= session[:idea_id]
+	end
+
 	def logged_in?
 		!current_user.nil?
 	end
 
     def user_community_member?
-    	!current_community.users.include?(current_user)
+    	current_community.users.include?(current_user)
     end
 
 	def log_out

@@ -1,0 +1,2 @@
+module TempBoxesHelper
+end

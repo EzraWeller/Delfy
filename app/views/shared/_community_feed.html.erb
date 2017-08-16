@@ -1,16 +1,12 @@
-<h1><%= current_community.name %></h1>
-<p><%= current_community.description %></p>
 <h2>Ideas</h2>
-<% current_community.ideas.each do |i| %>
-	<% @idea_id = i.id %>
-	<p>"<%= i.content %>"</p>
-	<p><%= "#{User.find_by(id: i.user_id).name}" %></p>
-	<p>Posted <%= time_ago_in_words(i.created_at) %> ago.</p>
-	<p id="<%= "#{i.id}_vote_form" %>">
-		<% if current_user.votes.where(idea_id: i.id).exists? %>
-			<span id="unvote"><%= render 'votes/unvote', :i => i %></span>
-		<% else %>
-			<span id="vote"><%= render 'votes/vote', :i => i %></span>
-		<% end %>
-	</p>
-<% end %>
+<p><%= render 'ideas/idea_form' %></p>
+<div id="idea_sort_buttons">
+	Sort by:
+	<%= button_to "Top", sort_ideas_path, params: {sort_style: :votes_count}, 
+		:disabled => idea_sort_style == "votes_count", remote: true %>
+	<%= button_to "New", sort_ideas_path, params: {sort_style: :created_at}, 
+		:disabled => idea_sort_style == "created_at", remote: true %>
+</div>
+<div id="idea_feed">
+	<%= render 'ideas/idea_feed' %>
+</div>

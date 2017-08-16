@@ -5,6 +5,7 @@ class CommunitiesController < ApplicationController
     	@community = Community.find(params[:id])
     	select_community(@community)
       	@idea = current_user.ideas.build
+      	@branch_idea = current_user.branch_ideas.build
     end
 	
 	def new
@@ -26,10 +27,18 @@ class CommunitiesController < ApplicationController
     	@communities = Community.all
 	end
 
+	def sort_ideas
+		sort_ideas_by(idea_sort_params)
+	end
+
 	private
   
 		def community_params
     		params.require(:community).permit(:name, :description, :leader)
+		end
+
+		def idea_sort_params
+			params.require(:sort_style)
 		end
 
 end

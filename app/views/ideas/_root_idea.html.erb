@@ -1,0 +1,4 @@
+<p>"<%= link_to i.content, idea_path(i) %>"</p>
+<p>Total votes: <%= Vote.where(idea: i).count %></p>
+<p><%= User.find_by(id: i.user_id).name %></p>
+<p>Posted <%= time_ago_in_words(i.created_at) %> ago.</p>

@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808141317) do
+ActiveRecord::Schema.define(version: 20170815132734) do
+
+  create_table "branch_ideas", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "community_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "idea_id"
+    t.integer  "votes_count",  default: 0
+    t.index ["community_id", "created_at"], name: "index_branch_ideas_on_community_id_and_created_at"
+    t.index ["created_at"], name: "index_branch_ideas_on_root_id_and_created_at"
+    t.index ["user_id", "created_at"], name: "index_branch_ideas_on_user_id_and_created_at"
+  end
 
   create_table "communities", force: :cascade do |t|
     t.datetime "created_at",  null: false
@@ -22,10 +35,11 @@ ActiveRecord::Schema.define(version: 20170808141317) do
 
   create_table "ideas", force: :cascade do |t|
     t.text     "content"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "user_id"
     t.integer  "community_id"
+    t.integer  "votes_count",  default: 0
     t.index ["community_id", "created_at"], name: "index_ideas_on_community_id_and_created_at"
     t.index ["user_id", "created_at"], name: "index_ideas_on_user_id_and_created_at"
   end
@@ -38,6 +52,11 @@ ActiveRecord::Schema.define(version: 20170808141317) do
     t.index ["user_id", "community_id"], name: "index_memberships_on_user_id_and_community_id", unique: true
   end
 
+  create_table "temp_boxes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
@@ -47,11 +66,14 @@ ActiveRecord::Schema.define(version: 20170808141317) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.integer  "user_id"
     t.integer  "community_id"
     t.integer  "idea_id"
+    t.integer  "branch_idea_id"
+    t.boolean  "root"
+    t.index ["branch_idea_id", "created_at"], name: "index_votes_on_branch_idea_id_and_created_at"
     t.index ["community_id", "created_at"], name: "index_votes_on_community_id_and_created_at"
     t.index ["idea_id", "created_at"], name: "index_votes_on_idea_id_and_created_at"
     t.index ["user_id", "created_at"], name: "index_votes_on_user_id_and_created_at"

@@ -1,2 +1,9 @@
-$("#community_feed").load(location.href+" #community_feed>*","");
-$("#votecount").html('<%= current_user.votes.where(community_id: current_community.id).count %>');
+$("#user_vote_count").html(
+	'<%= current_user.votes.where(community_id: current_community.id).count %>'
+);
+$("#<%= @vote.idea_id %>_root_idea").html(
+	'<%= escape_javascript(render "ideas/root_idea", i: @vote.idea)%>'
+);
+$("#<%= @vote.idea_id %>_branch_feed").html(
+	'<%= escape_javascript(render "ideas/branch_feed", idea: @vote.idea)%>'
+);

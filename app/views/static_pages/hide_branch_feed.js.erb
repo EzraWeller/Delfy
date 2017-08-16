@@ -1,0 +1,6 @@
+$("#<%= @idea.id %>_branch_feed").html(
+	""
+);
+$("#<%= @idea.id %>_feed_button").html(
+	'<%= escape_javascript(render "ideas/show_branches_button", idea: @idea)%>'
+);

@@ -1,0 +1,2 @@
+module BranchIdeasHelper
+end

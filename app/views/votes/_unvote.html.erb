@@ -1,6 +1,18 @@
-<%= form_for(:vote, url: vote_path(Vote.find_by(user_id: current_user.id, idea_id: i.id)),
-	html: { method: :delete }, remote: true) do |f| %>
-	<%= f.hidden_field :user_id, value: current_user.id %>
-	<%= f.hidden_field :idea_id, value: @idea_id %>
-	<%= f.submit "Unvote" %>
+<% if i.class == BranchIdea %>
+	<%= form_for(:vote, url: vote_path(Vote.find_by(user_id: current_user.id, 
+													branch_idea: i)),
+		html: { method: :delete }, remote: true) do |f| %>
+		<%= f.hidden_field :user_id, value: current_user.id %>
+		<%= f.hidden_field :branch_idea_id, value: i.id %>
+		<%= f.submit "Unvote" %>
+	<% end %>
+<% elsif i.class == Idea %>
+	<%= form_for(:vote, url: vote_path(Vote.find_by(user_id: current_user.id, idea_id: i.id, root: true)),
+		html: { method: :delete }, remote: true) do |f| %>
+		<%= f.hidden_field :user_id, value: current_user.id %>
+		<%= f.hidden_field :idea_id, value: i.id %>
+		<%= f.hidden_field :root, value: "t" %>
+		<%= f.submit "Unvote" %>
+	<% end %>
+<% else %>
 <% end %>

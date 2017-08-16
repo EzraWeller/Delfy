@@ -1,0 +1,8 @@
+<p><h2 id="<%= @idea.id %>_root_idea">
+	<%= render 'ideas/root_idea', i: @idea %>
+</h2></p>
+<p><h2>Branch Ideas:</h2></p>
+<p>Post new branch idea:</p>
+<%= render 'branch_ideas/branch_idea_form', idea: @idea %>
+<div id="<%= @idea.id %>_branch_feed"><%= render 'ideas/branch_feed', idea: @idea %></div>
+<p><%= link_to "Home", root_url %></p>

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     def community_member
       unless user_community_member?
         flash[:danger] = "Please join community."
-        redirect_to current_community
+        redirect_to request.referrer
       end
     end
 

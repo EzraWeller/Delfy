@@ -1,24 +1,31 @@
 class VotesController < ApplicationController
-	before_action :three_votes_max, only: [:create]
+	include VotesHelper
+	before_action :three_votes_max,   only: [:create]
+	before_action :community_member,  only: [:create, :destroy]
 
 	def create
 		@vote = Vote.new(vote_params)
 		if @vote.save
-			flash.now[:success] = "Vote recorded."
+			new_root_when_creating
 		else
-			flash.now[:danger] = "Vote not recorded."
+			flash[:danger] = "Only one vote per idea tree."
+			redirect_to root_url
 		end
 	end
 
 	def destroy
 		@vote = Vote.find_by(vote_params)
-		@vote.delete
+		if @vote.delete
+			new_root_when_destroying
+		else
+			redirect_to root_url
+		end
 	end
 
 	private
 
 		def vote_params
-			params.require(:vote).permit(:user_id, :community_id, :idea_id)
+			params.require(:vote).permit(:user_id, :community_id, :idea_id, :branch_idea_id, :root)
 		end
 
 		def three_votes_max
@@ -27,5 +34,4 @@ class VotesController < ApplicationController
 				redirect_to root_url
 			end
 		end
-
 end

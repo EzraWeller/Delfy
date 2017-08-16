@@ -1,5 +1,5 @@
-<p><strong><%= link_to "#{current_user.name}", @user %></strong></p>
+<p><strong><%= link_to "#{current_user.name}", current_user %></strong></p>
 <p><%= current_user.email %></p>
-<p>
+<div id="user_stats">
 	<%= render 'shared/stats' %>
-</p>
+</div>

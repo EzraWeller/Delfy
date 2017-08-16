@@ -11,13 +11,48 @@ User.create!(name:  "Admin Boy",
              password:              "password",
              password_confirmation: "password")
 
-Community.create!(name: "Baltimore City",
-	              description: "County in Maryland, USA",
-	              leader: 1)
+30.times do |u|
+	User.create!(name:  "Mr. #{u}",
+				 email: "doe#{u}@gmail.com",
+				 password:              "password",
+				 password_confirmation: "password")
+end
 
-3.times do |n|
-	Idea.create!(user_id: 1,
-	             community_id: 1,
-	             content: "It's post number #{n+1}!",
-	             created_at: (0+n).days.ago)
+Community.create!(name: "First Community",
+				  description: "The first seed community",
+				  leader: User.first.id)
+
+users = User.all
+users.each { |u| u.join(Community.first)}
+
+Idea.create!(community: Community.first,
+			 user: User.first,
+			 content: "Lorem grundle fish")
+
+3.times do |b|
+	BranchIdea.create!(user: User.find_by(id: b+2),
+					   idea: Idea.first,
+					   community: Community.first,
+					   content: "Lorem grundle fish the #{b+3}th")
+end
+
+10.times do |v|
+	Vote.create!(user: User.find_by(id: v+1),
+				 idea: Idea.find_by(id: 1),
+				 branch_idea: Idea.find_by(id: 1).branches.first,
+				 community: Idea.find_by(id: 1).community)
+end
+
+10.times do |v|
+	Vote.create!(user: User.find_by(id: v+11),
+				 idea: Idea.find_by(id: 1),
+				 branch_idea: Idea.find_by(id: 1).branches.second,
+				 community: Idea.find_by(id: 1).community)
+end
+
+10.times do |v|
+	Vote.create!(user: User.find_by(id: v+21),
+				 idea: Idea.find_by(id: 1),
+				 branch_idea: Idea.find_by(id: 1).branches.third,
+				 community: Idea.find_by(id: 1).community)
 end

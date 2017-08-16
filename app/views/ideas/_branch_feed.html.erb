@@ -1,0 +1,45 @@
+<p>
+	Current root idea: "<%= idea.content %>"
+	Root idea votes: <span id="<%= idea.id %>_vote_count"><%= idea.votes.where(root: true).count %></span>
+</p>
+<p><%= idea.user.name %></p>
+<p>Posted <%= time_ago_in_words(idea.created_at) %> ago.</p>
+<div id="<%= idea.id %>_vote_form">
+	<% if current_user.votes.where(idea: idea, root: true).exists? %>
+		<%= render 'votes/unvote', i: idea %>
+	<% else %>
+		<%= render 'votes/vote', i: idea %>
+	<% end %>
+</div>
+
+<div id="branch_idea_form"><%= render 'branch_ideas/branch_idea_form', idea: idea %></div>
+
+<div id="branch_idea_sort_buttons">
+	Sort branches:
+	<%= button_to "Top", sort_branch_ideas_path, params: {branch_sort_style: :votes_count, idea_id: idea.id}, 
+		:disabled => branch_idea_sort_style(idea.id) == "votes_count", remote: true %>
+	<%= button_to "New", sort_branch_ideas_path, params: {branch_sort_style: :created_at, idea_id: idea.id}, 
+		:disabled => branch_idea_sort_style(idea.id) == "created_at", remote: true %>
+</div>
+
+<% if branch_idea_sort_style(idea.id) %>
+	<% sorted_branch_ideas = idea.branches.reorder(branch_idea_sort_style(idea.id) => :desc) %>
+<% else %>
+	<% sorted_branch_ideas = idea.branches %>
+<% end %>
+
+<% sorted_branch_ideas.each do |b| %>
+	<p>
+		"<%= b.content %>" 
+		Branch idea votes: <span id="<%= b.id %>_vote_count"><%= b.votes.count %></span>
+	</p>
+	<p><%= User.find_by(id: b.user_id).name %></p>
+	<p>Posted <%= time_ago_in_words(b.created_at) %> ago.</p>
+	<div id="<%= b.id %>_vote_form">
+		<% if current_user.votes.where(branch_idea: b).exists? %>
+			<%= render 'votes/unvote', i: b %>
+		<% else %>
+			<%= render 'votes/vote', i: b %>
+		<% end %>
+	</div>
+<% end %>
