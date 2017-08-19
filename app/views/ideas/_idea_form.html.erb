@@ -1,5 +1,5 @@
-<%= form_for(@idea) do |f| %>
-    <%= f.text_area :content, placeholder: "Compose new idea: what's the biggest problem you have in #{@community.name}?" %>
+<%= form_for(current_user.ideas.build) do |f| %>
+    <%= f.text_area :content, placeholder: "Compose new idea: what's the biggest problem you have in #{current_community.name}?" %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :community_id, value: current_community.id %>
   <%= f.submit "Post" %>

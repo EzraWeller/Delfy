@@ -3,6 +3,7 @@
 <% else %>
 	<% sorted_ideas = current_community.ideas %>
 <% end %>
+
 <% sorted_ideas.each do |i| %>
 	<div id="<%= i.id %>_root_idea">
 		<%= render 'ideas/root_idea', i: i %>

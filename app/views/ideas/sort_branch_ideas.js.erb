@@ -1,1 +1,3 @@
-$("#<%= @idea.id %>_branch_feed").html("<%= escape_javascript(render 'ideas/branch_feed', idea: @idea) %>");
+$("#<%= params[:idea] %>_branch_feed").html(
+	'<%= escape_javascript(render "ideas/branch_feed", idea: Idea.find(params[:idea]) )%>'
+);

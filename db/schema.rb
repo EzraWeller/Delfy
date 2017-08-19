@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815132734) do
+ActiveRecord::Schema.define(version: 20170817004606) do
 
   create_table "branch_ideas", force: :cascade do |t|
     t.string   "content"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170815132734) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
+    t.string   "remember_digest"
   end
 
   create_table "votes", force: :cascade do |t|

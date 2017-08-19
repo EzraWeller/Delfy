@@ -16,9 +16,9 @@
 
 <div id="branch_idea_sort_buttons">
 	Sort branches:
-	<%= button_to "Top", sort_branch_ideas_path, params: {branch_sort_style: :votes_count, idea_id: idea.id}, 
+	<%= button_to "Top", sort_branch_ideas_path, params: {branch_sort_style: :votes_count, idea: idea}, 
 		:disabled => branch_idea_sort_style(idea.id) == "votes_count", remote: true %>
-	<%= button_to "New", sort_branch_ideas_path, params: {branch_sort_style: :created_at, idea_id: idea.id}, 
+	<%= button_to "New", sort_branch_ideas_path, params: {branch_sort_style: :created_at, idea: idea}, 
 		:disabled => branch_idea_sort_style(idea.id) == "created_at", remote: true %>
 </div>
 

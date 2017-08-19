@@ -1,8 +1,8 @@
 class StaticPagesController < ApplicationController
     def home
   		@user = current_user
-        @idea = current_user.ideas.build
-        @community = current_community
+        @idea = current_user.ideas.build if current_user
+        @community = current_community if current_user
     end
 
     def set_community

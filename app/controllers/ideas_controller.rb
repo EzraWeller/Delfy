@@ -18,7 +18,7 @@ class IdeasController < ApplicationController
 	end
 
 	def sort_branch_ideas
-		@idea = Idea.find_by(params[:id])
+		@idea = Idea.find_by(params[:idea])
 		sort_branch_ideas_by(@idea.id, branch_idea_sort_params)
 	end
 
