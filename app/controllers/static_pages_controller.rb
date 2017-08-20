@@ -8,10 +8,6 @@ class StaticPagesController < ApplicationController
     def set_community
     	@community = Community.find(params[:community_id])
     	select_community(@community)
-		respond_to do |format|
-			format.html { redirect_to root_url }
-			format.js
-		end
 	end
 
     def show_branch_feed

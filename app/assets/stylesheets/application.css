@@ -13,3 +13,52 @@
  *= require_tree .
  *= require_self
  */
+
+ /* universal */
+
+html, body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	font-family: 'Helvetica', sans-serif;
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	background: yellow;
+}
+
+.main {
+	display: flex;
+	flex-direction: row;
+	background: gray;
+	height: 100%;
+}
+
+.sidebar {
+	background: pink;
+	width: 20%;
+}
+
+.feed{
+	background: blue;
+	width: 100%;
+}
+
+.logo {
+	background: grey;
+	width: 20%;
+}
+
+.top-nav {
+	background: red;
+}
+
+.community-select-button {
+	float: left;
+	width: auto;
+}
