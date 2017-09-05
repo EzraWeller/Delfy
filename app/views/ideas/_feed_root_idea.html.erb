@@ -1,0 +1,20 @@
+<% if idea.votes.where(user_id: current_user.id, root: true).present? %>
+	<div class="root-idea voted-for">
+<% else %>
+	<div class="root-idea">
+<% end %>
+		<div class="root-top">"<%= idea.content %>"</div>
+		<div class="root-bottom">
+			<div>Posted <%= time_ago_in_words(idea.created_at) %> ago by <%= idea.user.name %></div>
+			<div class="vote-button" id="<%= idea.id %>_vote_form">
+				<% if current_user.votes.where(idea: idea, root: true).exists? %>
+					<%= render 'votes/unvote', i: idea %>
+				<% else %>
+					<%= render 'votes/vote', i: idea %>
+				<% end %>
+				<div class="root-vote-count" id="<%= idea.id %>_vote_count">
+					<%= idea.votes.where(root: true).count %>
+				</div>
+			</div>
+		</div>
+	</div>

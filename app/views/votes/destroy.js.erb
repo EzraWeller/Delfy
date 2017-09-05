@@ -4,6 +4,19 @@ $("#user_vote_count").html(
 $("#<%= @vote.idea_id %>_root_idea").html(
 	'<%= escape_javascript(render "ideas/root_idea", i: @vote.idea)%>'
 );
-$("#<%= @vote.idea_id %>_branch_feed").html(
-	'<%= escape_javascript(render "ideas/branch_feed", idea: @vote.idea)%>'
+
+<% if @vote.branch_idea %>
+	$("#<%= @vote.idea_id %>_branch_feed").html(
+		'<%= escape_javascript(render "ideas/branch_feed", idea: @vote.idea, page_num: @vote.branch_idea.page(branch_idea_sort_style(@vote.idea_id)) )%>'
+	);
+<% else %>
+	$("#<%= @vote.idea_id %>_branch_feed").html(
+		'<%= escape_javascript(render "ideas/branch_feed", idea: @vote.idea )%>'
+	);
+<% end %>
+
+$(".<%= @vote.idea_id %>.vote-count").html(
+	'<%= Vote.where(idea: @vote.idea).count %>'
 );
+$(".<%= @vote.idea_id %>.base-idea").removeClass('voted-for');
+$("#<%= @vote.id %>-user-vote-feed").html('<%= escape_javascript(render "users/user_vote_gate", v: @vote)%>');

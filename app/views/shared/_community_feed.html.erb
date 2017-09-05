@@ -1,13 +1,24 @@
-<h1><%= current_community.name %></h1>
-<h2>Ideas</h2>
-<p><%= render 'ideas/idea_form' %></p>
-<div id="idea_sort_buttons">
-	Sort by:
-	<%= button_to "Top", sort_ideas_path, params: {sort_style: :votes_count}, 
-		:disabled => idea_sort_style == "votes_count", remote: true %>
-	<%= button_to "New", sort_ideas_path, params: {sort_style: :created_at}, 
-		:disabled => idea_sort_style == "created_at", remote: true %>
-</div>
+<% flash.each do |message_type, message| %>
+	<div class="alert alert-<%= message_type %>"><%= message %></div>
+<% end %>
+
+<h1><%= link_to current_community.name, community_path(current_community) %></h1>
+<p><%= current_community.description %></p>
+
+<div class="idea-form"><%= render 'ideas/idea_form' %></div>
+
+<% if current_community.ideas.exists? %>
+	<div class="sort-buttons" id="idea_sort_buttons">
+		<div>Sort by:</div>
+		<div class="sort-button"><%= button_to "Top", sort_ideas_path, params: {sort_style: :votes_count}, 
+			:disabled => idea_sort_style == "votes_count", remote: true %></div>
+		<div class="sort-button"><%= button_to "New", sort_ideas_path, params: {sort_style: :created_at}, 
+			:disabled => idea_sort_style == "created_at", remote: true %></div>
+	</div>
+<% else %>
+	<div>No ideas have been submitted yet!</div>
+<% end %>
+
 <div id="idea_feed">
 	<%= render 'ideas/idea_feed' %>
 </div>

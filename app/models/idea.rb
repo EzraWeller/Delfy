@@ -7,4 +7,6 @@ class Idea < ApplicationRecord
 	validates  :user_id, presence: true
 	validates  :community_id, presence: true
 	validates  :content, presence: true, length: { maximum: 140 }
+	paginates_per 25
+
 end

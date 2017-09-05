@@ -1,0 +1,9 @@
+<% if v.branch_idea %>
+	<div id="<%= v.branch_idea_id %>-user-vote-feed">
+		<%= render 'ideas/branch_idea', b: v.branch_idea %>
+	</div>
+<% else %>
+	<div id="<%= v.idea_id %>-user-vote-feed">
+		<%= render 'ideas/feed_root_idea', idea: v.idea %>
+	</div>
+<% end %>

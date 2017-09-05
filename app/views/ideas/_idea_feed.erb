@@ -1,17 +1,10 @@
 <% if idea_sort_style %>
-	<% sorted_ideas = current_community.ideas.reorder(idea_sort_style => :desc) %>
+	<% sorted_ideas = current_community.ideas.reorder(idea_sort_style => :desc).page(params[:page]) %>
 <% else %>
-	<% sorted_ideas = current_community.ideas %>
+	<% sorted_ideas = current_community.ideas.page(params[:page]) %>
 <% end %>
 
 <% sorted_ideas.each do |i| %>
-	<div id="<%= i.id %>_root_idea">
-		<%= render 'ideas/root_idea', i: i %>
-	</div>
-	<div>
-		<div id="<%= i.id %>_feed_button">
-			<%= render 'ideas/show_branches_button', idea: i %>
-		</div>
-		<div id="<%= i.id %>_branch_feed"></div>
-	</div>
+	<%= render 'ideas/base_idea', i: i %>
 <% end %>
+<%= paginate sorted_ideas %>

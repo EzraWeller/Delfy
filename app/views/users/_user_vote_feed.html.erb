@@ -1,0 +1,10 @@
+<% sorted_votes = user.votes.order("idea_id") %>
+
+<h2>Voted-for Ideas:</h2>
+<div>
+	<% sorted_votes.each do |v| %>
+		<div id="<%= v.id %>-user-vote-feed">
+			<%= render 'users/user_vote_gate', v: v %>
+		</div>
+	<% end %>
+</div>

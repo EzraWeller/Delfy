@@ -1,0 +1,13 @@
+<% if i.votes.where(user_id: current_user.id).present? %>
+	<div class="<%= i.id %> base-idea voted-for">
+<% else %>
+	<div class="<%= i.id %> base-idea">
+<% end %>
+		<%= render 'ideas/root_idea', i: i %>
+		<div class="vote-button" id="<%= i.id %>_feed_button">
+			<%= render 'ideas/show_branches_button', idea: i %>
+		</div>
+	</div>
+<div>
+	<div id="<%= i.id %>_branch_feed"></div>
+</div>

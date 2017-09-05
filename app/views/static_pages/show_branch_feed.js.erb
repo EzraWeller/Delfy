@@ -2,5 +2,5 @@ $("#<%= @idea.id %>_branch_feed").html(
 	'<%= escape_javascript(render "ideas/branch_feed", idea: @idea )%>'
 );
 $("#<%= @idea.id %>_feed_button").html(
-	'<%= escape_javascript(render "ideas/hide_branches_button")%>'
+	'<%= escape_javascript(render "ideas/hide_branches_button", idea: @idea)%>'
 );

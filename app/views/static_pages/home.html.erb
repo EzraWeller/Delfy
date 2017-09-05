@@ -1,30 +1,33 @@
-<header>
-	<div class="logo"><h1>Delfy</h1></div>
-	<div class= "top-nav">Select one of your communities:</div>
-	<div class= "top-nav" id="community_selector">
-		<% current_user.communities.each do |c| %>
-			<div class="community-select-button"><%= button_to "#{c.name}", select_community_path(@community), 
-			    	{ params: {community_id: c.id}, :disabled => current_community == c, 
-			    	remote: true , form_class: 'community_select_button'} %></div>
-		<% end %>
-	</div>
-</header>
 <% if logged_in? %>
+	<header>
+		<div class="logo"><h1>Delfy</h1></div>
+		<div class= "top-nav">
+			<div>Your communities:</div>
+			<div id="community_selector">
+				<% current_user.communities.each do |c| %>
+					<div class="community-select-button-div"><%= button_to "#{c.name}", select_community_path(@community),
+					    	{ params: {community_id: c.id}, :disabled => current_community == c, 
+					    	remote: true , form_class: 'community-select-button'} %></div>
+				<% end %>
+			</div>
+		</div>
+	</header>
 	<section class="main">
 		<div class="sidebar">
-			<p><%= render 'shared/user_chunk' %></p>
-			<p><%= link_to "Create community", new_community_path %></p>
-			<p><%= link_to "Community Index",  communities_path %></p>
-			<p><%= link_to "User Index",       index_path %></p>
-			<p><%= link_to "Log out",          logout_path, method: :delete %></p>
+			<div><%= render 'shared/user_chunk' %></div>
+			<div><%= link_to "Create community", new_community_path %></div>
+			<div><%= link_to "Community Index",  communities_path %></div>
+			<div><%= link_to "Log out",          logout_path, method: :delete %></div>
 		</div>
 		<div class="feed">
 			<div id="community_feed"><%= render 'shared/community_feed' if current_user.communities.exists? %></div>
 		</div>
 	</section>
 <% else %>
-	<section class="main">
-		<p><%= link_to "Sign up",    signup_path %></p>
-		<p><%= link_to "Log in",     login_path %></p>
-	</section>
+		<h1 class="title">Delfy</h1>
+		<div class="login-links">
+			<p><%= link_to "Sign up",    signup_path %></p>
+			<p><%= link_to "Log in",     login_path %></p>
+		</div>
 <% end %>
+<footer></footer>

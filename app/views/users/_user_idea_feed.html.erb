@@ -1,0 +1,13 @@
+<h2>Authored Ideas:</h2>
+<div class="user-idea-feed">
+	<% user.ideas.each do |i| %>
+		<%= render 'ideas/feed_root_idea', idea: i %>
+	<% end %>
+</div>
+
+<h2>Authored Branch Ideas:</h2>
+<div class="user-branch-feed">
+	<% user.branch_ideas.each do |b| %>
+		<%= render 'ideas/branch_idea', b: b %>
+	<% end %>
+</div>

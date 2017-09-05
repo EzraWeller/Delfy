@@ -29,8 +29,8 @@ Idea.create!(community: Community.first,
 			 user: User.first,
 			 content: "Lorem grundle fish")
 
-3.times do |b|
-	BranchIdea.create!(user: User.find_by(id: b+2),
+110.times do |b|
+	BranchIdea.create!(user: User.find_by(id: 1),
 					   idea: Idea.first,
 					   community: Community.first,
 					   content: "Lorem grundle fish the #{b+3}th")
@@ -55,4 +55,10 @@ end
 				 idea: Idea.find_by(id: 1),
 				 branch_idea: Idea.find_by(id: 1).branches.third,
 				 community: Idea.find_by(id: 1).community)
+end
+
+110.times do |i|
+	Idea.create!(community: Community.first,
+				 user: User.first,
+				 content: "Idea #{i+1}")
 end

@@ -1,0 +1,5 @@
+<% sorted_branch_ideas.each do |b| %>
+	<%= render 'ideas/branch_idea', b: b %>
+<% end %>
+
+<%= paginate sorted_branch_ideas, remote: true %>

@@ -1,18 +1,54 @@
-<p>User page for: </p><%= render 'shared/user_chunk' %>
-<h2>Community Leader of:</h2>
-<% @leadcommunities.each do |l| %>
-	<p><%= link_to "#{l.name}", community_path(id: l.id) %></p>
-<% end %>
-<h2>Community Member of:</h2>
-<% @user.communities.each do |c| %>
-	<p><%= link_to "#{c.name}", community_path(id: c.id) %></p>
-<% end %>
-<h2><%= "#{@user.name}" %>'s Ideas:</h2>
-<% @user.ideas.each do |i| %>
-	<p>
-		"<%= i.content %>" 
-		Community: <%= link_to "#{Community.find_by(id: i.community_id).name}", 
-	                   community_path(id: i.community_id) %>
-	</p>
-<% end %>
-<p><%= link_to "Home", root_path %></p>
+<div class="user-page">
+	<% flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+
+	<div class="user-info">
+		<%= render 'users/user_info' %>
+	</div>
+
+	<div id="user-page-votes">
+		<%= render 'users/user_vote_feed', user: @user %>
+	</div>
+
+	<div id="user-idea-feed">
+		<h2><%= @user.name %>'s Ideas</h2>
+		<div>
+			<h3>Authored Ideas:</h3>
+			<% @user.ideas.each do |i| %>
+				<p>
+					<div><%= link_to "#{i.content}", idea_path(i) %></div>
+					<div>Community: <%= i.community.name %></div>
+					<div>Vote count: <%= i.votes_count %></div>
+					<div>Branch count: <%= i.branches.count %></div>
+				</p>
+			<% end %>
+		</div>
+		<div>
+			<h3>Authored Branch Ideas:</h3>
+			<% @user.branch_ideas.each do |b| %>
+				<p>
+					<div><%= link_to "#{b.content}", branch_idea_path(b) %></div>
+					<div>Community: <%= b.community.name %></div>
+					<div>Vote count: <%= b.votes_count %></div>
+				</p>
+			<% end %>
+		</div>
+	</div>
+
+	<div>
+		<h2>Community Leader of:</h2>
+		<% @leadcommunities.each do |l| %>
+			<p><%= link_to "#{l.name}", community_path(id: l.id) %></p>
+		<% end %>
+	</div>
+
+	<div>
+		<h2>Community Member of:</h2>
+		<% @user.communities.each do |c| %>
+			<p><%= link_to "#{c.name}", community_path(id: c.id) %></p>
+		<% end %>
+	</div>
+
+	<p><%= link_to "Home", root_path %></p>
+</div>

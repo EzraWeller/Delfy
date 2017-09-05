@@ -1,15 +1,15 @@
 <% @user ||= current_user %>
 <div class="stats">
-  <strong id="communitycount" class="stat">
+  <p><strong id="communitycount" class="stat">
     <%= @user.communities.count %>
   </strong>
-  communities
-  <strong id="ideacount" class="stat">
+  communities</p>
+  <p><strong id="ideacount" class="stat">
     <%= @user.ideas.count %>
   </strong>
-  ideas submitted
-  <strong id="user_vote_count" class="stat">
+  ideas submitted</p>
+  <p><strong id="user_vote_count" class="stat">
     <%= current_community ? @user.votes.where(community_id: current_community.id).count : 0 %>
   </strong>
-  votes in current community
+  votes in <%= current_community.name %></p>
 </div>

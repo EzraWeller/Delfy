@@ -7,13 +7,6 @@ class VotesController < ApplicationController
 		@vote = Vote.new(vote_params)
 		if @vote.save
 			new_root_when_creating
-			# if root vote, update the root idea's vote_count, if branch vote, update the branch idea's vote count
-			if @vote.root == true
-				@vote.idea.update_attribute(:votes_count, @vote.idea.votes.count)
-			elsif @vote.branch_idea
-				@vote.branch_idea.update_attribute(:votes_count, @vote.branch_idea.votes.count)
-			else
-			end
 		else
 			flash[:danger] = "Only one vote per idea tree."
 			redirect_to request.referrer
@@ -24,14 +17,8 @@ class VotesController < ApplicationController
 		@vote = Vote.find_by(vote_params)
 		if @vote.destroy
 			new_root_when_destroying
-			# if root vote, update the root idea's vote_count, if branch vote, update the branch idea's vote count
-			if @vote.root == true
-				@vote.idea.update_attribute(:votes_count, @vote.idea.votes.count)
-			elsif @vote.branch_idea
-				@vote.branch_idea.update_attribute(:votes_count, @vote.branch_idea.votes.count)
-			else
-			end
 		else
+			flash[:danger] = "Vote failed to be destroyed."
 			redirect_to request.referrer
 		end
 	end

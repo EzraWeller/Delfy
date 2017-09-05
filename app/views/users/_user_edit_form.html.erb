@@ -1,0 +1,20 @@
+<h2>Edit User Info</h2>
+
+<div>
+  <%= form_for(@user) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+
+    <%= f.label :password, "New password" %>
+    <%= f.password_field :password %>
+
+    <%= f.label :password_confirmation, "Confirm new password" %>
+    <%= f.password_field :password_confirmation %>
+
+    <%= f.submit "Save new user info" %>
+  <% end %>
+  <%= button_to "Back", hide_edit_form_path, { params: {id: @user.id}, remote: true } %>
+</div>

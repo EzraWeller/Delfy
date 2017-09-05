@@ -1,0 +1,9 @@
+USA:
+  name: USA
+  description: USa number one.
+  leader: 1
+
+World:
+  name: World
+  description: World peace.
+  leader: 2

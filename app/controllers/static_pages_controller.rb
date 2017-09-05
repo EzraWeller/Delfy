@@ -25,4 +25,23 @@ class StaticPagesController < ApplicationController
             format.js
         end
     end
+
+    def get_branch_page
+        if params[:idea]
+            @idea = Idea.find(params[:idea])
+        elsif params[:vote][:idea_id]
+            @idea = Idea.find(params[:vote][:idea_id])
+        else
+            @idea = BranchIdea.find(params[:vote][:branch_idea_id]).idea
+        end
+        if branch_idea_sort_style(@idea.id)
+            @sorted_branch_ideas = @idea.branches.reorder(branch_idea_sort_style(@idea.id) => :desc).page(params[:page])
+        else
+            @sorted_branch_ideas = @idea.branches.page(params[:page])
+        end
+        respond_to do |format|
+            format.html { redirect_to root_url }
+            format.js
+        end
+    end
 end

@@ -1,13 +1,17 @@
-<%= form_for(:vote, url: votes_path, remote: true) do |f| %>
-	<%= f.hidden_field :user_id, value: current_user.id %>
-	<%= f.hidden_field :community_id, value: current_community.id %>
-	<% if i.class == Idea %>
-		<%= f.hidden_field :idea_id, value: i.id %>
-		<%= f.hidden_field :root, value: true %>
-	<% elsif i.class == BranchIdea %>
-		<%= f.hidden_field :branch_idea_id, value: i.id %>
-		<%= f.hidden_field :idea_id, value: i.idea_id %>
-	<% else %>
+<div>
+	<%= form_for(:vote, url: votes_path, remote: true) do |f| %>
+		<%= f.hidden_field :user_id, value: current_user.id %>
+		<%= f.hidden_field :community_id, value: current_community.id %>
+		<% if i.class == Idea %>
+			<%= f.hidden_field :idea_id, value: i.id %>
+			<%= f.hidden_field :root, value: true %>
+		<% elsif i.class == BranchIdea %>
+			<%= f.hidden_field :branch_idea_id, value: i.id %>
+			<%= f.hidden_field :idea_id, value: i.idea_id %>
+		<% else %>
+		<% end %>
+		<%= button_tag(type: 'submit', class: 'vote-button') do %>
+			<%= material_icon.done.md_24 %>
+		<% end %>
 	<% end %>
-	<%= f.submit "Vote" %>
-<% end %>
+</div>

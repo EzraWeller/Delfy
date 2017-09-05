@@ -1,7 +1,13 @@
-<h1>Community Index</h1>
-<div>
-  <% @communities.each do |i| %>
-      <h2><%= link_to "#{i.name}", community_path(id: i.id) %></h2>
-      <p><%= i.description %></p>
-  <% end %>
+<div class="community-index">
+	<h1>Community Index</h1>
+	<div>
+	  <% @communities.each do |i| %>
+	      <p>
+	      	<h2><%= link_to "#{i.name}", community_path(id: i.id) %></h2>
+	      	<div><%= i.description %></div>
+	      	<br>
+	      </p>
+	  <% end %>
+	</div>
+	<%= link_to "Home", root_path %>
 </div>

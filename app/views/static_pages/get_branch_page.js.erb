@@ -1,0 +1,3 @@
+$('#<%= @idea.id %>-branch-feed').html(
+	'<%= escape_javascript(render "ideas/branches", idea: @idea, sorted_branch_ideas: @sorted_branch_ideas) %>'
+);
