@@ -5,7 +5,7 @@ class IdeasController < ApplicationController
 		@idea = current_user.ideas.build(idea_params)
 		if @idea.save
 			flash[:success] = "Idea created!"
-			redirect_to current_community
+			redirect_to root_url
 		else
 			flash[:danger] = "Idea creation failed."
 			redirect_to root_url
@@ -20,6 +20,28 @@ class IdeasController < ApplicationController
 	def sort_branch_ideas
 		@idea = Idea.find_by(params[:idea])
 		sort_branch_ideas_by(@idea.id, branch_idea_sort_params)
+	end
+
+	def search
+		@searchterms = params[:search]
+		@search = Idea.search do
+			fulltext params[:search], fields: :content
+			with :community_id, params[:community_id]
+			paginate per_page: 150
+		end
+		@searchbranches = Idea.search do
+			fulltext params[:search]
+			with :community_id, params[:community_id]
+			paginate per_page: 150
+		end
+		@justbranches = BranchIdea.search do
+			fulltext params[:search]
+			with :community_id, params[:community_id]
+			paginate per_page: 150
+		end
+		@ideas = @search.results
+		@ideas_w_branches = @searchbranches.results - @ideas
+		@branches = @justbranches.results
 	end
 
 	private

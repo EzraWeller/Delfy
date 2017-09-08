@@ -2,3 +2,4 @@ $("#community_feed").html("<%= escape_javascript(render('shared/community_feed')
 $("#community_selector").load(location.href+" #community_selector>*","");
 $("#votecount").html("<%= current_user.votes.where(community_id: current_community.id).count %>");
 $("#user_stats").html('<%= escape_javascript(render "shared/stats")%>');
+$("#sidebar-votes").html('<%= escape_javascript(render "users/home_vote_feed", user: @user)%>')

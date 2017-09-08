@@ -1,0 +1,6 @@
+<% for idea in @ideas %>
+	<%= render 'ideas/base_idea', i: idea %>
+<% end %>
+<% for idea in @ideas_w_branches %>
+	<%= render 'ideas/base_idea_w_searched_branches', i: idea %>
+<% end %>

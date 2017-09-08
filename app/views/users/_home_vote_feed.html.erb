@@ -1,0 +1,13 @@
+<% sorted_votes = user.votes.order("idea_id") %>
+
+<h2>Current Votes:</h2>
+<div>
+	<% sorted_votes.each do |v| %>
+		<% if v.community == current_community %>
+			<div id="<%= v.id %>-user-vote-feed">
+				<%= render 'users/user_vote_gate', v: v %>
+			</div>
+		<% else %>
+		<% end %>
+	<% end %>
+</div>

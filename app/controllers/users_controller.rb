@@ -8,6 +8,12 @@ class UsersController < ApplicationController
     @leadcommunities = Community.all.where(leader: @user.id)
   end
 
+  def ideas
+    @user = User.find(params[:id])
+    @ideas = @user.ideas.page(params[:page])
+    @branches = @user.branch_ideas.page(params[:page])
+  end
+
   def new
     @user = User.new
   end

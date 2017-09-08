@@ -5,7 +5,7 @@
 <% end %>
 		<div class="branch-top">"<%= b.content %>"</div>
 		<div class="branch-bottom">
-			<div>
+			<div class="branch-bottom-left">
 				Posted <%= time_ago_in_words(b.created_at) %> ago by <%= User.find_by(id: b.user_id).name %>	
 			</div>
 			<div class="vote-button" id="<%= b.id %>_vote_form">

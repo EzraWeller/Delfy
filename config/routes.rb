@@ -12,13 +12,15 @@ Rails.application.routes.draw do
   get    '/votes/:id',         to: 'static_pages#get_branch_page'
   get    '/signup', 		       to: 'users#new'
   post   '/signup',			       to: 'users#create'
-  get    '/index',  		       to: 'users#index'
+  # get    '/index',  		       to: 'users#index'
   post   '/show_edit_form',    to: 'users#show_edit_form',
                                     as: 'show_edit_form'
   post   '/hide_edit_form',    to: 'users#hide_edit_form',
                                     as: 'hide_edit_form'
   patch  '/ask_current_pw',    to: 'users#ask_current_pw',
                                     as: 'ask_current_pw'
+  get    '/users/:id/ideas',   to: 'users#ideas',
+                                    as: 'users_ideas'
   get    '/login', 			       to: 'sessions#new'
   post   '/login',  		       to: 'sessions#create'
   delete '/logout',  		       to: 'sessions#destroy'
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
   post   '/sort_ideas',        to: 'communities#sort_ideas'
   get    '/sort_ideas',        to: 'static_pages#home'
   post   '/sort_branch_ideas', to: 'ideas#sort_branch_ideas'
+  get    '/search_ideas',      to: 'ideas#search',
+                                    as: 'search_ideas'
   resources :users do
   	member do
   		get :communities
@@ -33,7 +37,7 @@ Rails.application.routes.draw do
   end
   resources :communities
   resources :memberships,  only: [:create, :destroy]
-  resources :ideas,        only: [:create, :destroy, :show]
+  resources :ideas,        only: [:create, :destroy, :show, :index]
   resources :branch_ideas, only: [:create, :destroy, :show]
   resources :votes,        only: [:create, :destroy]
   resources :temp_boxes,   only: [:create, :destroy]

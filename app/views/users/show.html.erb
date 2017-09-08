@@ -1,4 +1,6 @@
 <div class="user-page">
+	<p><%= link_to "Home", root_path %></p>
+
 	<% flash.each do |message_type, message| %>
 		<div class="alert alert-<%= message_type %>"><%= message %></div>
 	<% end %>
@@ -7,33 +9,8 @@
 		<%= render 'users/user_info' %>
 	</div>
 
-	<div id="user-page-votes">
+	<div class="user-page-votes">
 		<%= render 'users/user_vote_feed', user: @user %>
-	</div>
-
-	<div id="user-idea-feed">
-		<h2><%= @user.name %>'s Ideas</h2>
-		<div>
-			<h3>Authored Ideas:</h3>
-			<% @user.ideas.each do |i| %>
-				<p>
-					<div><%= link_to "#{i.content}", idea_path(i) %></div>
-					<div>Community: <%= i.community.name %></div>
-					<div>Vote count: <%= i.votes_count %></div>
-					<div>Branch count: <%= i.branches.count %></div>
-				</p>
-			<% end %>
-		</div>
-		<div>
-			<h3>Authored Branch Ideas:</h3>
-			<% @user.branch_ideas.each do |b| %>
-				<p>
-					<div><%= link_to "#{b.content}", branch_idea_path(b) %></div>
-					<div>Community: <%= b.community.name %></div>
-					<div>Vote count: <%= b.votes_count %></div>
-				</p>
-			<% end %>
-		</div>
 	</div>
 
 	<div>
@@ -50,5 +27,6 @@
 		<% end %>
 	</div>
 
-	<p><%= link_to "Home", root_path %></p>
+	<div><h2><%= link_to "Authored Ideas and Branches", users_ideas_path %></h2></div>
+
 </div>

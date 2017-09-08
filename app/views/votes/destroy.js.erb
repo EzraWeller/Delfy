@@ -9,9 +9,15 @@ $("#<%= @vote.idea_id %>_root_idea").html(
 	$("#<%= @vote.idea_id %>_branch_feed").html(
 		'<%= escape_javascript(render "ideas/branch_feed", idea: @vote.idea, page_num: @vote.branch_idea.page(branch_idea_sort_style(@vote.idea_id)) )%>'
 	);
+	$("#<%= @vote.idea_id %>_feed_button").html(
+	'<%= escape_javascript(render "ideas/hide_branches_button", idea: @vote.idea)%>'
+	);
 <% else %>
 	$("#<%= @vote.idea_id %>_branch_feed").html(
 		'<%= escape_javascript(render "ideas/branch_feed", idea: @vote.idea )%>'
+	);
+	$("#<%= @vote.idea_id %>_feed_button").html(
+	'<%= escape_javascript(render "ideas/hide_branches_button", idea: @vote.idea)%>'
 	);
 <% end %>
 

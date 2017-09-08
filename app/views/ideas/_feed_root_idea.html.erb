@@ -5,7 +5,7 @@
 <% end %>
 		<div class="root-top">"<%= idea.content %>"</div>
 		<div class="root-bottom">
-			<div>Posted <%= time_ago_in_words(idea.created_at) %> ago by <%= idea.user.name %></div>
+			<div class="root-bottom-left">Posted <%= time_ago_in_words(idea.created_at) %> ago by <%= idea.user.name %></div>
 			<div class="vote-button" id="<%= idea.id %>_vote_form">
 				<% if current_user.votes.where(idea: idea, root: true).exists? %>
 					<%= render 'votes/unvote', i: idea %>

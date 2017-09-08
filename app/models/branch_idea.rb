@@ -10,6 +10,11 @@ class BranchIdea < ApplicationRecord
 	validates  :content, presence: true, length: { maximum: 140 }
 	paginates_per 25
 
+	searchable do
+	    text :content
+	    integer :community_id
+	end
+
 	def page(order = "votes_count", direction = ">=", per_page = 25)
 		direction == ">=" ? opp_dir = ">" : opp_dir = "<"
 		if BranchIdea.where(order => self.send(order)).count > 1

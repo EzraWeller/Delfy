@@ -1,0 +1,29 @@
+<div class="user-ideas-page">
+	<h2><%= @user.name %>'s Ideas</h2>
+	<p><%= link_to "Home", root_path %></p>
+	<div class="user-ideas-feed">
+		<div>
+			<h3>Authored Ideas:</h3>
+			<% @ideas.each do |i| %>
+				<p>
+					<div><%= link_to "#{i.content}", idea_path(i) %></div>
+					<div>Community: <%= i.community.name %></div>
+					<div>Vote count: <%= i.votes_count %></div>
+					<div>Branch count: <%= i.branches.count %></div>
+				</p>
+			<% end %>
+			<%= paginate @ideas %>
+		</div>
+		<div>
+			<h3>Authored Branch Ideas:</h3>
+			<% @branches.each do |b| %>
+				<p>
+					<div><%= link_to "#{b.content}", branch_idea_path(b) %></div>
+					<div>Community: <%= b.community.name %></div>
+					<div>Vote count: <%= b.votes_count %></div>
+				</p>
+			<% end %>
+			<%= paginate @branches %>
+		</div>
+	</div>
+</div>
