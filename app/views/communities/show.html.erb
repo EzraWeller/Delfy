@@ -1,6 +1,6 @@
-<h1><%= @community.name %></h1>
-<p><%= @community.description %></p>
-<p>Logged in as: </p><%= render 'shared/user_chunk' %>
-<p><%= render 'joinleave_form' %></p>
-<div id="community_feed"><%= render 'shared/community_feed' %></div>
-<p><%= link_to 'Home', root_path %></p>
+<div class="community-page">
+	<p><%= link_to 'Home', root_path %></p>
+	<p><%= link_to 'Admin Options', community_admin_path %></p>
+	<div class="joinleave-form"><%= render 'joinleave_form' %></div>
+	<div id="community_feed"><%= render 'shared/community_feed' %></div>
+</div>

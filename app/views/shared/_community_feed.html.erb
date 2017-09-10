@@ -6,6 +6,7 @@
 
 <h1><%= link_to current_community.name, community_path(current_community) %></h1>
 <p><%= current_community.description %></p>
+<p><strong class="stat"><%= current_community.users.count %></strong> members</p>
 
 <div class="idea-form"><%= render 'ideas/idea_form' %></div>
 

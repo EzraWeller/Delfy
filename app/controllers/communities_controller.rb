@@ -1,5 +1,6 @@
 class CommunitiesController < ApplicationController
-	before_action :logged_in_user, only: [:create, :new, :show]
+	before_action :logged_in_user, only: [:create, :new, :show, :admin]
+	before_action :leader,         only: [:admin]
 
 	def show
     	@community = Community.find(params[:id])
@@ -31,6 +32,11 @@ class CommunitiesController < ApplicationController
 		sort_ideas_by(idea_sort_params)
 	end
 
+	def admin
+		@community = Community.find(params[:id])
+		@users = @community.users.page(params[:page])
+	end
+
 	private
   
 		def community_params
@@ -39,6 +45,16 @@ class CommunitiesController < ApplicationController
 
 		def idea_sort_params
 			params.require(:sort_style)
+		end
+
+		def leader
+			@community = Community.find(params[:id])
+			if @community.leader?(current_user)
+
+			else
+				redirect_to community_path(@community)
+				flash[:danger] = "Only community leaders can access admin options."
+			end
 		end
 
 end

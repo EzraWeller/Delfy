@@ -1,0 +1,17 @@
+<% if b.votes.where(user_id: current_user.id).present? %>
+	<div class="feed-branch-idea voted-for">
+<% else %>
+	<div class="feed-branch-idea">
+<% end %>
+		<div class="branch-top">"<%= b.content %>"</div>
+		<div class="branch-bottom">
+			<div class="vote-button" id="<%= b.id %>_vote_form">
+				<% if current_user.votes.where(branch_idea: b).exists? %>
+					<%= render 'votes/unvote', i: b %>
+				<% else %>
+					<%= render 'votes/vote', i: b %>
+				<% end %>
+				<div class="branch-vote-count" id="<%= b.id %>_vote_count"><%= b.votes.count %></div>
+			</div>
+		</div>
+	</div>

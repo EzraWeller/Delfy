@@ -90,7 +90,15 @@ header {
 	margin-left: 20px;
 }
 
+.community-page {
+	margin-left: 20px;
+}
+
 .user-ideas-page {
+	margin-left: 20px;
+}
+
+.community-admin-page {
 	margin-left: 20px;
 }
 
@@ -183,6 +191,10 @@ input {
 	margin-top: 10px;
 	width: 50px;
 	color: #1A9407;
+}
+
+.edit_membership > input, .new_membership > input {
+	width: 80px;
 }
 
 .community-select-button input {
@@ -316,6 +328,19 @@ footer {
 	background: white;
 	padding: 10px 10px 0px 10px;
 	width: 60%;
+	margin: 5px 5px 15px 0px;
+	color: #1A9407;
+	border-radius: 1px;
+}
+
+.feed-root-idea, .feed-branch-idea {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background: white;
+	padding: 5px 10px 5px 10px;
+	width: 260px;
 	margin: 5px 5px 15px 0px;
 	color: #1A9407;
 	border-radius: 1px;

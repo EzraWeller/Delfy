@@ -1,0 +1,19 @@
+<div class="community-admin-page">
+	<p><%= link_to "Back", community_path(@community) %></p>
+
+	<div>
+		<h1><%= @community.name %> Admin Options</h1>
+	</div>
+
+	<div>
+		<h2>Membership Options</h2>
+	</div>
+
+	<div>
+		<h2>Members</h2>
+		<% for user in @users %>
+			<p><%= link_to "#{user.name}", user_path(user) %><p>
+		<% end %>
+		<%= paginate @users %>
+	</div>
+</div>
