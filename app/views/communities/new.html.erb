@@ -8,7 +8,18 @@
     <%= f.label :description %>
     <%= f.text_area :description %>
 
-  <%= f.hidden_field :leader, value: current_user.id %>
+    <%= f.label :membership_setting do %>
+    	Membership Setting
+    	</br>
+	    <%= f.radio_button :membership_setting, 'open' %>
+	    <%= f.label :membership_setting, 
+	    	"Open (Anyone can join.)", value: 'open' %></br>
+	    <%= f.radio_button :membership_setting, 'closed' %>
+	    <%= f.label :membership_setting, 
+	    	"Closed (Only users you invite or who have an access key can join.)", value: "restricted" %>
+	<% end %>
+
+  	<%= f.hidden_field :leader, value: current_user.id %>
 
     <%= f.submit "Create new community" %>
   <% end %>

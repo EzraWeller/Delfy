@@ -4,6 +4,7 @@
 	  <% @communities.each do |i| %>
 	      <p>
 	      	<h2><%= link_to "#{i.name}", community_path(id: i.id) %></h2>
+	      	<div>(<%= i.membership_setting %> membership)</div>
 	      	<div><%= i.description %></div>
 	      	<br>
 	      </p>

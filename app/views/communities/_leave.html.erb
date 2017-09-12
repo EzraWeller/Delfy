@@ -1,4 +1,4 @@
 <%= form_for(current_user.memberships.find_by(community_id: @community.id),
              html: { method: :delete }, remote: true) do |f| %>
-  <%= f.submit "Leave" %>
+  <%= f.submit "Leave", data: { confirm: "Are you sure? If you are leaving a closed membership community, you will need the community leader's help to join again."} %>
 <% end %>

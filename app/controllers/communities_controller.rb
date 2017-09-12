@@ -40,7 +40,7 @@ class CommunitiesController < ApplicationController
 	private
   
 		def community_params
-    		params.require(:community).permit(:name, :description, :leader)
+    		params.require(:community).permit(:name, :description, :leader, :membership_setting)
 		end
 
 		def idea_sort_params

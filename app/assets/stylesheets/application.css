@@ -72,9 +72,10 @@ header {
 
 .logo {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	width: 430px;
+	margin-left: 15px;
 }
 
 .top-nav {
@@ -83,7 +84,7 @@ header {
 	justify-content: left;
 	align-items: center;
 	width: 100%;
-	padding-left: 30px;
+	padding-left: 15px;
 }
 
 .user-page {
@@ -168,6 +169,29 @@ textarea#branch_idea_content {
 
 .user-info input[type=submit] {
 	width: 220px;
+}
+
+label[for="community_membership_setting"] {
+	margin-top: 10px;
+}
+
+input[type=radio] {
+	width   : 28px;
+ 	margin  : 0;
+ 	padding : 0;
+	opacity : 0;
+}
+
+input[type=radio]:not(old) + label {
+  display      : inline-block;
+  margin-left  : -28px;
+  padding-left : 28px;
+  background   : url('ic_radio_button_unchecked_black_24dp_1x.png') no-repeat 0 0;
+  line-height  : 24px;
+}
+
+input[type=radio]:not(old):checked + label {
+	background   : url('ic_radio_button_checked_black_24dp_1x.png') no-repeat 0 0;
 }
 
 /* buttons */

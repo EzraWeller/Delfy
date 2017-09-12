@@ -2,6 +2,10 @@
     <% if current_community.users.include?(current_user) %>
     	<%= render 'leave' %>
     <% else %>
-    	<%= render 'join' %>
+        <% if current_community.membership_setting == "closed" %>
+			<%= render 'join' %> CLOSED
+    	<% else %>
+    		<%= render 'join' %>
+    	<% end %>
     <% end %>
 </div>

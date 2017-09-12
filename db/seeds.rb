@@ -20,7 +20,13 @@ end
 
 Community.create!(name: "First Community",
 				  description: "The first seed community",
-				  leader: User.first.id)
+				  leader: User.first.id,
+				  membership_setting: "open")
+
+Community.create!(name: "Second Community",
+				  description: "The first seed community",
+				  leader: User.last.id,
+				  membership_setting: "closed")
 
 users = User.all
 users.each { |u| u.join(Community.first)}
