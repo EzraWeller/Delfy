@@ -193,7 +193,7 @@ DEPENDENCIES
   kaminari
   listen (~> 3.0.5)
   material_icons
-  pg
+  pg (= 0.21.0)
   puma (~> 3.0)
   rails (~> 5.0.2)
   sass-rails (~> 5.0)
