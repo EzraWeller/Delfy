@@ -11,8 +11,6 @@ gem 'rails', '~> 5.0.2'
 # Password security gem
 gem 'bcrypt', '3.1.3'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-# Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -48,6 +46,7 @@ gem 'sunspot_rails'
 
 
 group :development, :test do
+  gem 'sqlite3', '1.3.13'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   # Search during development (run bundle exec rake sunspot:solr:start or sunspot:solr:run to start in foreground)
