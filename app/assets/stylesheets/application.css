@@ -431,3 +431,7 @@ footer {
 .alert-success {
 	color: green;
 }
+
+.alert-warning {
+	color: orange;
+}

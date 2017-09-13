@@ -9,13 +9,17 @@
 User.create!(name:  "Admin Boy",
              email: "admin@gmail.com",
              password:              "password",
-             password_confirmation: "password")
+             password_confirmation: "password",
+             activated: true,
+             activated_at: Time.zone.now)
 
 30.times do |u|
 	User.create!(name:  "Mr. #{u}",
 				 email: "doe#{u}@gmail.com",
 				 password:              "password",
-				 password_confirmation: "password")
+				 password_confirmation: "password",
+				 activated: true,
+             	 activated_at: Time.zone.now)
 end
 
 Community.create!(name: "First Community",

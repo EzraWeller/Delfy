@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170910145123) do
+ActiveRecord::Schema.define(version: 20170912122845) do
 
   create_table "branch_ideas", force: :cascade do |t|
     t.string   "content"
@@ -59,12 +59,15 @@ ActiveRecord::Schema.define(version: 20170910145123) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
     t.string   "remember_digest"
+    t.string   "activation_digest"
+    t.boolean  "activated",         default: false
+    t.datetime "activated_at"
   end
 
   create_table "votes", force: :cascade do |t|

@@ -38,9 +38,10 @@ Rails.application.routes.draw do
   	end
   end
   resources :communities
-  resources :memberships,  only: [:create, :destroy]
-  resources :ideas,        only: [:create, :destroy, :show, :index]
-  resources :branch_ideas, only: [:create, :destroy, :show]
-  resources :votes,        only: [:create, :destroy]
-  resources :temp_boxes,   only: [:create, :destroy]
+  resources :memberships,         only: [:create, :destroy]
+  resources :ideas,               only: [:create, :destroy, :show, :index]
+  resources :branch_ideas,        only: [:create, :destroy, :show]
+  resources :votes,               only: [:create, :destroy]
+  resources :temp_boxes,          only: [:create, :destroy]
+  resources :account_activations, only: [:edit]
 end
