@@ -8,8 +8,10 @@
     <%= @user.ideas.count %>
   </strong>
   ideas submitted</p>
-  <p><strong id="user_vote_count" class="stat">
-    <%= current_community ? @user.votes.where(community_id: current_community.id).count : 0 %>
-  </strong>
-  votes in <%= current_community.name %></p>
+  <p id="user_vote_count" class="stat">
+    <% if current_community %>
+      <strong><%= @user.votes.where(community_id: current_community.id).count %></strong> votes in <%= current_community.name %>
+    <% else %>
+    <% end %>
+  </p>
 </div>
