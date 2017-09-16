@@ -1,2 +1,6 @@
-$("#joinleave_form").html("<%= escape_javascript(render('communities/join')) %>");
+<% if @community.membership_setting == "closed" %>
+	$("#joinleave_form").html("<%= escape_javascript(render('communities/join_closed')) %>");
+<% else %>
+	$("#joinleave_form").html("<%= escape_javascript(render('communities/join')) %>");
+<% end %>
 $("#communitycount").html('<%= current_user.communities.count %>');

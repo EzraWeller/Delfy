@@ -1,0 +1,16 @@
+<h1>Delfy</h1>
+
+<p>Hi there,</p>
+
+<p>
+You have been invited to a community on Delfy! If you don't already have an account, create one here:
+</p>
+
+<%= link_to "Sign up", new_user_url %>
+
+<p>
+Once you have an activated account, please visit the community page and enter this access code to join:
+</p>
+
+<p><%= link_to "#{@community.name}", community_url(@community) %></p>
+<p>Access code: <%= @invitation.access_token %></p>

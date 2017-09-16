@@ -1,11 +1,11 @@
 <div id="joinleave_form">
     <% if current_community.users.include?(current_user) %>
-    	<%= render 'leave' %>
+    	<%= render 'communities/leave' %>
     <% else %>
         <% if current_community.membership_setting == "closed" %>
-			<%= render 'join' %> CLOSED
+        	<%= render 'communities/join_closed' %>
     	<% else %>
-    		<%= render 'join' %>
+    		<%= render 'communities/join' %>
     	<% end %>
     <% end %>
 </div>

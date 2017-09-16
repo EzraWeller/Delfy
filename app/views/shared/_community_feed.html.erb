@@ -3,7 +3,7 @@
 <p><%= current_community.description %></p>
 <p><strong class="stat"><%= current_community.users.count %></strong> members</p>
 
-<div class="idea-form"><%= render 'ideas/idea_form' %></div>
+<div class="idea-form"><%= render 'ideas/idea_form' unless !current_community.users.include?(current_user) %></div>
 
 <% if current_community.ideas.exists? %>
 	<div class="sort-buttons" id="idea_sort_buttons">

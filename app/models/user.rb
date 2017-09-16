@@ -5,7 +5,8 @@ class User < ApplicationRecord
   has_many :ideas
   has_many :branch_ideas
   has_many :votes
-  validates(:name,  presence: true, length: { maximum: 50 })
+  has_many :invitations
+  validates(:name,  presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: true})
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates(:email, presence: true, length: { maximum: 255 }, 
              format: { with: VALID_EMAIL_REGEX }, 
@@ -52,6 +53,11 @@ class User < ApplicationRecord
     UserMailer.account_activation(self).deliver_now
   end
 
+  # Sends community invitation email.
+  def invite(invitation)
+    UserMailer.community_invitation(invitation).deliver_now
+  end
+
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = User.new_token
@@ -68,6 +74,13 @@ class User < ApplicationRecord
   # Forgets a user
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  def create_new_activation_digest
+    activation_token  = User.new_token
+    activation_digest = User.digest(activation_token)
+    self.activation_token = activation_token
+    self.update_attribute(:activation_digest, activation_digest)
   end
 
   private

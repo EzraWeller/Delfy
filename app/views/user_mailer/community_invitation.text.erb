@@ -1,0 +1,10 @@
+Hi there,
+
+You have been invited to a community on Delfy! If you don't already have an account, create one here:
+
+<%= link_to "Sign up", new_user_url %>
+
+Once you have an activated account, please visit the community page and enter this access code to join:
+
+<%= link_to "#{@community.name}", community_url(@community) %>
+Access code: <%= @invitation.access_token %>

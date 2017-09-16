@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
         select_community(@user.communities.first) if @user.communities.exists?
   		  redirect_back_or root_url
       else
+        @user.create_new_activation_digest
+        @user.send_activation_email
         message = "Account not activated."
         message += "Check your email for the activation link."
         flash[:warning] = message

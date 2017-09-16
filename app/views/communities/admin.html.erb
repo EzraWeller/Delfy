@@ -1,4 +1,8 @@
 <div class="community-admin-page">
+	<% flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
+
 	<p><%= link_to "Back", community_path(@community) %></p>
 
 	<div>
@@ -7,10 +11,40 @@
 
 	<div>
 		<h2>Membership Options</h2>
+		<p>
+			<h3>Invite people to the community:</h3>
+
+			<%= form_for community_invites_path(@community), remote: true do |f| %>
+				<%= f.hidden_field :community_id, value: @community.id, name: "invitations[community_id]" %>
+
+				<%= f.label :emails, "Email addresses, separated by commas:", name: "invitations[emails]" %>
+				<%= f.text_area :emails, name: "invitations[emails]" %>
+
+				<%= f.submit "Invite" %>
+			<% end %>
+		</p>
+		<p>
+			<h3>Past invitations:</h3>
+			<p>
+				Total invitations: <%= @community.invitations.count %></br>
+				Total emails invited:<%= @community.invitations.pluck(:email).uniq.count %>
+			</p>
+			<% @invitations.each do |i| %>
+				<%= i.email %> <%= i.created_at %>
+				<% if i.accepted? %>
+					Accepted
+				<% else %>
+					Pending
+				<% end %>
+				</br>
+			<% end %>
+			<%= paginate @invitations %>
+		</p>
 	</div>
 
 	<div>
 		<h2>Members</h2>
+		Total members: <%= @community.users.count %>
 		<% for user in @users %>
 			<p><%= link_to "#{user.name}", user_path(user) %><p>
 		<% end %>

@@ -1,6 +1,11 @@
 <div class="community-page">
 	<p><%= link_to 'Home', root_path %></p>
-	<p><%= link_to 'Admin Options', community_admin_path %></p>
+	<p>
+		<% if @community.leader?(current_user) %>
+			<%= link_to 'Admin Options', community_admin_path %>
+		<% else %>
+		<% end %>
+	</p>
 	<div class="joinleave-form"><%= render 'joinleave_form' %></div>
 	<div id="community_feed"><%= render 'shared/community_feed' %></div>
 </div>

@@ -32,6 +32,8 @@ Rails.application.routes.draw do
                                        as: 'search_ideas'
   get    '/communities/:id/admin', to: 'communities#admin',
                                        as: 'community_admin'
+  post   '/communities/:id/admin', to: 'invitations#create_many',
+                                       as: 'community_invites'
   resources :users do
   	member do
   		get :communities
@@ -44,4 +46,5 @@ Rails.application.routes.draw do
   resources :votes,               only: [:create, :destroy]
   resources :temp_boxes,          only: [:create, :destroy]
   resources :account_activations, only: [:edit]
+  resources :invitations,         only: [:create]
 end

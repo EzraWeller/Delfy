@@ -4,6 +4,7 @@ class Community < ApplicationRecord
 	has_many :ideas
 	has_many :branch_ideas
 	has_many :votes
+	has_many :invitations
 	default_scope -> { order(:name) }
 	validates(:name,  presence: true, length: { maximum: 100 })
 	validates(:description,  presence: true, length: { maximum: 400 })

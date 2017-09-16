@@ -1,5 +1,9 @@
 <h1 class="new_session">Log in</h1>
 
+<% flash.each do |message_type, message| %>
+	<p class="alert alert-<%= message_type %> new_session"><%= message %></p>
+<% end %>
+
 <%= form_for(:session, url: login_path, html: {class: "new_session"} ) do |f| %>
 
 	<%= f.label :email %>

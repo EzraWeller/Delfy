@@ -34,7 +34,9 @@ class CommunitiesController < ApplicationController
 
 	def admin
 		@community = Community.find(params[:id])
+		@invitation = Invitation.new
 		@users = @community.users.page(params[:page])
+		@invitations = @community.invitations.page(params[:page])
 	end
 
 	private

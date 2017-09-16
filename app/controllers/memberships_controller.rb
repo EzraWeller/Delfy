@@ -3,20 +3,31 @@ class MembershipsController < ApplicationController
 
 	def create
 		@community = Community.find(params[:community_id])
-		current_user.join(@community)
-		respond_to do |format|
-			format.html { redirect_to @community }
-			format.js
+		if @community.membership_setting == "open"
+			current_user.join(@community)
+			redirect_to @community
+		else
+			@invitations = Invitation.where(community: @community)
+			@invitations.each do |a|
+				if a.authenticated?(params[:membership][:access_token])
+					current_user.join(@community)
+					a.update_attribute(:accepted, true)
+				else
+				end
+			end
+			if current_user.communities.include?(@community)
+				flash[:success] = "Successfuly joined community!"
+			else
+				flash[:danger] = "Incorrect access code or invitation already accepted. Request a new invitation to the community."
+			end
+			redirect_to @community
 		end
 	end
 
 	def destroy
 		@community = Membership.find(params[:id]).community
 		current_user.leave(@community)
-		respond_to do |format|
-			format.html { redirect_to @community }
-			format.js
-		end
+		redirect_to @community
 	end
 
 end
