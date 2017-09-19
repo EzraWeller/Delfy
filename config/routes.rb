@@ -47,4 +47,5 @@ Rails.application.routes.draw do
   resources :temp_boxes,          only: [:create, :destroy]
   resources :account_activations, only: [:edit]
   resources :invitations,         only: [:create]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
 end

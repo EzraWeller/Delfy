@@ -87,19 +87,12 @@ header {
 	padding-left: 15px;
 }
 
-.user-page {
-	margin-left: 20px;
-}
-
-.community-page {
-	margin-left: 20px;
-}
-
-.user-ideas-page {
-	margin-left: 20px;
-}
-
-.community-admin-page {
+.user-page, 
+.community-page, 
+.user-ideas-page, 
+.community-admin-page,
+.forgot_password,
+.reset_password {
 	margin-left: 20px;
 }
 
@@ -141,7 +134,8 @@ textarea#branch_idea_content {
 .new_session     > input,
 .edit_user       > input,
 .new_membership  > input,
-.new_invitations > input {
+.new_invitations > input,
+.new_reset       > input {
 	width: 40%;
 	margin: 10px 0px 10px 0px;
 }
@@ -174,6 +168,18 @@ textarea#branch_idea_content {
 	width: 220px;
 }
 
+.new_invitations > input[type=submit] {
+	width: 80px;
+}
+
+.new_reset > input[type=submit] {
+	width: 80px;
+}
+
+.new_reset > input[type=email] {
+	width: 220px;
+}
+
 label[for="community_membership_setting"] {
 	margin-top: 10px;
 }
@@ -195,10 +201,6 @@ input[type=radio]:not(old) + label {
 
 input[type=radio]:not(old):checked + label {
 	background   : url('ic_radio_button_checked_black_24dp_1x.png') no-repeat 0 0;
-}
-
-.new_invitations > input[type=submit] {
-	width: 80px;
 }
 
 /* buttons */
@@ -435,7 +437,7 @@ footer {
 	color: red;
 }
 
-.alert-success {
+.alert-success, .alert-info {
 	color: green;
 }
 
