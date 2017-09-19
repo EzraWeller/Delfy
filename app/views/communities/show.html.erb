@@ -1,5 +1,8 @@
 <div class="community-page">
 	<p><%= link_to 'Home', root_path %></p>
+	<% flash.each do |message_type, message| %>
+		<div class="alert alert-<%= message_type %>"><%= message %></div>
+	<% end %>
 	<p>
 		<% if @community.leader?(current_user) %>
 			<%= link_to 'Admin Options', community_admin_path %>

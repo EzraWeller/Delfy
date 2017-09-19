@@ -14,7 +14,7 @@
 		<p>
 			<h3>Invite people to the community:</h3>
 
-			<%= form_for community_invites_path(@community), remote: true do |f| %>
+			<%= form_for community_invites_path(@community), html: { class: "new_invitations", remote: true } do |f| %>
 				<%= f.hidden_field :community_id, value: @community.id, name: "invitations[community_id]" %>
 
 				<%= f.label :emails, "Email addresses, separated by commas:", name: "invitations[emails]" %>

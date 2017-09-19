@@ -136,20 +136,23 @@ textarea#branch_idea_content {
 	margin-bottom: 20px;
 }
 
-.new_user      > input, 
-.new_community > input,
-.new_session   > input,
-.edit_user     > input {
+.new_user        > input, 
+.new_community   > input,
+.new_session     > input,
+.edit_user       > input,
+.new_membership  > input,
+.new_invitations > input {
 	width: 40%;
 	margin: 10px 0px 10px 0px;
 }
 
-.new_community > textarea {
+.new_community   > textarea,
+.new_invitations > textarea {
 	width: 40%;
-	height: 150px;
+	height: 100px;
 }
 
-.new_user      > input[type=submit] {
+.new_user > input[type=submit] {
 	width: 160px;
 }
 
@@ -192,6 +195,10 @@ input[type=radio]:not(old) + label {
 
 input[type=radio]:not(old):checked + label {
 	background   : url('ic_radio_button_checked_black_24dp_1x.png') no-repeat 0 0;
+}
+
+.new_invitations > input[type=submit] {
+	width: 80px;
 }
 
 /* buttons */
