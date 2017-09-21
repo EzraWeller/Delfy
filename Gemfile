@@ -41,16 +41,16 @@ gem 'material_icons'
 # pagination
 gem 'kaminari'
 
-# Full-text search
-gem 'sunspot_rails'
+# Free full-text search :)
+gem 'pg_search'
+
+# Database
+gem 'pg', '0.21.0'
 
 
 group :development, :test do
-  gem 'sqlite3', '1.3.13'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  # Search during development (run bundle exec rake sunspot:solr:start or sunspot:solr:run to start in foreground)
-  gem 'sunspot_solr'
 end
 
 group :development do
@@ -63,7 +63,6 @@ group :development do
 end
 
 group :production do
-  gem 'pg', '0.21.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

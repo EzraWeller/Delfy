@@ -5,6 +5,9 @@
 <% end %>
 		<div class="root-top">"<%= idea.content %>"</div>
 		<div class="root-bottom">
+			<div class="root-bottom-left">
+				Posted <%= time_ago_in_words(idea.created_at) %> ago by <%= User.find_by(id: idea.user_id).name %>	
+			</div>
 			<div class="vote-button" id="<%= idea.id %>_vote_form">
 				<% if current_user.votes.where(idea: idea, root: true).exists? %>
 					<%= render 'votes/unvote', i: idea %>

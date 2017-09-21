@@ -9,11 +9,8 @@ class Idea < ApplicationRecord
 	validates  :content, presence: true, length: { maximum: 140 }
 	paginates_per 25
 
-	searchable do
-	    text :content
-	    integer :community_id
-	    text :branches do
-	    	branches.map { |branch| branch.content }
-	    end
-	end
+	include PgSearch
+	pg_search_scope :search_content_for, against: :content
+	multisearchable against: :content
+
 end

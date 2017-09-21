@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170919012025) do
+ActiveRecord::Schema.define(version: 20170920203100) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "branch_ideas", force: :cascade do |t|
     t.string   "content"
@@ -20,9 +23,8 @@ ActiveRecord::Schema.define(version: 20170919012025) do
     t.datetime "updated_at",               null: false
     t.integer  "idea_id"
     t.integer  "votes_count",  default: 0
-    t.index ["community_id", "created_at"], name: "index_branch_ideas_on_community_id_and_created_at"
-    t.index ["created_at"], name: "index_branch_ideas_on_root_id_and_created_at"
-    t.index ["user_id", "created_at"], name: "index_branch_ideas_on_user_id_and_created_at"
+    t.index ["community_id", "created_at"], name: "index_branch_ideas_on_community_id_and_created_at", using: :btree
+    t.index ["user_id", "created_at"], name: "index_branch_ideas_on_user_id_and_created_at", using: :btree
   end
 
   create_table "communities", force: :cascade do |t|
@@ -41,8 +43,8 @@ ActiveRecord::Schema.define(version: 20170919012025) do
     t.integer  "user_id"
     t.integer  "community_id"
     t.integer  "votes_count",  default: 0
-    t.index ["community_id", "created_at"], name: "index_ideas_on_community_id_and_created_at"
-    t.index ["user_id", "created_at"], name: "index_ideas_on_user_id_and_created_at"
+    t.index ["community_id", "created_at"], name: "index_ideas_on_community_id_and_created_at", using: :btree
+    t.index ["user_id", "created_at"], name: "index_ideas_on_user_id_and_created_at", using: :btree
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -60,7 +62,16 @@ ActiveRecord::Schema.define(version: 20170919012025) do
     t.integer  "community_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["user_id", "community_id"], name: "index_memberships_on_user_id_and_community_id", unique: true
+    t.index ["user_id", "community_id"], name: "index_memberships_on_user_id_and_community_id", unique: true, using: :btree
+  end
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.string   "searchable_type"
+    t.integer  "searchable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable_type_and_searchable_id", using: :btree
   end
 
   create_table "temp_boxes", force: :cascade do |t|
@@ -90,10 +101,10 @@ ActiveRecord::Schema.define(version: 20170919012025) do
     t.integer  "idea_id"
     t.integer  "branch_idea_id"
     t.boolean  "root"
-    t.index ["branch_idea_id", "created_at"], name: "index_votes_on_branch_idea_id_and_created_at"
-    t.index ["community_id", "created_at"], name: "index_votes_on_community_id_and_created_at"
-    t.index ["idea_id", "created_at"], name: "index_votes_on_idea_id_and_created_at"
-    t.index ["user_id", "created_at"], name: "index_votes_on_user_id_and_created_at"
+    t.index ["branch_idea_id", "created_at"], name: "index_votes_on_branch_idea_id_and_created_at", using: :btree
+    t.index ["community_id", "created_at"], name: "index_votes_on_community_id_and_created_at", using: :btree
+    t.index ["idea_id", "created_at"], name: "index_votes_on_idea_id_and_created_at", using: :btree
+    t.index ["user_id", "created_at"], name: "index_votes_on_user_id_and_created_at", using: :btree
   end
 
 end

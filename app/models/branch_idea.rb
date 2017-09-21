@@ -10,10 +10,9 @@ class BranchIdea < ApplicationRecord
 	validates  :content, presence: true, length: { maximum: 140 }
 	paginates_per 25
 
-	searchable do
-	    text :content
-	    integer :community_id
-	end
+	include PgSearch
+	pg_search_scope :search_content_for, against: :content
+	multisearchable against: :content
 
 	def page(order = "votes_count", direction = ">=", per_page = 25)
 		direction == ">=" ? opp_dir = ">" : opp_dir = "<"

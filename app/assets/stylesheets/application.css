@@ -354,7 +354,7 @@ footer {
 	font-size: 13px;
 }
 
-.root-idea {
+.root-idea, .feed-root-idea {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -366,7 +366,7 @@ footer {
 	border-radius: 1px;
 }
 
-.feed-root-idea, .feed-branch-idea {
+.side-feed-root, .feed-branch-idea {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
