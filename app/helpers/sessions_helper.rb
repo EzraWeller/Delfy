@@ -40,11 +40,11 @@ module SessionsHelper
 	end
 
 	def idea_sort_style
-		@idea_sort_style ||= session[:idea_sort_style]
+		@idea_sort_style ||= session[:idea_sort_style] || "votes_count"
 	end
 
 	def branch_idea_sort_style(idea_id)
-		@branch_idea_sort_style ||= session[:idea_id]
+		@branch_idea_sort_style ||= session[:idea_id] || "votes_count"
 	end
 
 	def logged_in?
