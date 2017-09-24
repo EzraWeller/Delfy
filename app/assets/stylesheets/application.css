@@ -195,12 +195,12 @@ input[type=radio]:not(old) + label {
   display      : inline-block;
   margin-left  : -28px;
   padding-left : 28px;
-  background   : url('ic_radio_button_unchecked_black_24dp_1x.png') no-repeat 0 0;
+  background   : image-url('ic_radio_button_unchecked_black_24dp_1x.png') no-repeat 0 0;
   line-height  : 24px;
 }
 
 input[type=radio]:not(old):checked + label {
-	background   : url('ic_radio_button_checked_black_24dp_1x.png') no-repeat 0 0;
+	background   : image-url('ic_radio_button_checked_black_24dp_1x.png') no-repeat 0 0;
 }
 
 /* buttons */
