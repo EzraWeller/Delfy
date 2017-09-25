@@ -113,10 +113,10 @@ a {
 
 a:hover {
 	text-shadow:
-    -1px -1px 0 #F87EE1,
-    1px -1px 0 #F87EE1,
-    -1px 1px 0 #F87EE1,
-    1px 1px 0 #F87EE1;
+    -1px -1px 0 #5AD048,
+    1px -1px 0 #5AD048,
+    -1px 1px 0 #5AD048,
+    1px 1px 0 #5AD048;
 }
 
 /* forms */
