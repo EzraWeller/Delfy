@@ -32,6 +32,11 @@ Community.create!(name: "Second Community",
 				  leader: User.last.id,
 				  membership_setting: "closed")
 
+Community.create!(name: "Delfy",
+				  description: "Tutorial community",
+				  leader: User.first.id,
+				  membership_setting: "open")
+
 users = User.all
 users.each { |u| u.join(Community.first)}
 

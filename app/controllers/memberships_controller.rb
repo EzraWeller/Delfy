@@ -27,6 +27,7 @@ class MembershipsController < ApplicationController
 	def destroy
 		@community = Membership.find(params[:id]).community
 		current_user.leave(@community)
+		current_user.votes.where(community: @community).destroy_all
 		redirect_to @community
 	end
 

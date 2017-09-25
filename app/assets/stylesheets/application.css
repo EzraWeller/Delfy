@@ -106,6 +106,19 @@ header {
 	padding-right: 20px;
 }
 
+a {
+	color: black;
+    text-decoration: none; 
+}
+
+a:hover {
+	text-shadow:
+    -1px -1px 0 #F87EE1,
+    1px -1px 0 #F87EE1,
+    -1px 1px 0 #F87EE1,
+    1px 1px 0 #F87EE1;
+}
+
 /* forms */
 
 form {
@@ -134,6 +147,7 @@ textarea#branch_idea_content {
 .new_session     > input,
 .edit_user       > input,
 .new_membership  > input,
+.edit_membership > input,
 .new_invitations > input,
 .new_reset       > input {
 	width: 40%;
@@ -203,6 +217,10 @@ input[type=radio]:not(old):checked + label {
 	background   : image-url('ic_radio_button_checked_black_24dp_1x.png') no-repeat 0 0;
 }
 
+input[type=submit] {
+	cursor: pointer;
+}
+
 /* buttons */
 
 .community-select-button-div {
@@ -265,6 +283,7 @@ input {
 	border: 0px solid black;
 	outline: 0px solid;
 	border-radius: 15px;
+	cursor: pointer;
 }
 
 p.vote-count {

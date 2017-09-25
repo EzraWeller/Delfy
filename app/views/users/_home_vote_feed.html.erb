@@ -1,6 +1,5 @@
 <% sorted_votes = user.votes.order("idea_id") %>
 
-<h2>Current Votes:</h2>
 <div>
 	<% sorted_votes.each do |v| %>
 		<% if v.community == current_community %>
