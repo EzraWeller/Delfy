@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//= depend_on_asset "ic_radio_button_unchecked_black_24dp_1x.png"
+//= depend_on_asset "ic_radio_button_checked_black_24dp_1x.png"
+
 .community-index {
 	margin-left: 20px;
 }
