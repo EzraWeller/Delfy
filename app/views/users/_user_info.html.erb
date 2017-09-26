@@ -1,6 +1,10 @@
 <h2>User Info:</h2>
 <p><strong>Username:</strong> <%= @user.name %></p>
 <% if current_user == @user %>
+	<% if @user.admin == true %>
+		<p><strong>Admin user</strong></p>
+	<% else %>
+	<% end %>
 	<p><strong>User email:</strong> <%= @user.email %></p>
 
 	<%= form_for @user, url: ask_current_pw_path(params: {id: @user.id}), remote: true do |f| %>
