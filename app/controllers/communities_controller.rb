@@ -26,7 +26,7 @@ class CommunitiesController < ApplicationController
 	end
 
 	def index
-    	@communities = Community.all
+    	@communities = Community.all.page(params[:page])
 	end
 
 	def sort_ideas
