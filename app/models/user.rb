@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :communities, through: :memberships
   has_many :ideas
   has_many :branch_ideas
-  has_many :votes
+  has_many :votes, dependent: :destroy
   has_many :invitations
   validates(:name,  presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: true})
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i

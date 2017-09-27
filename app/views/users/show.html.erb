@@ -5,6 +5,14 @@
 		<div class="alert alert-<%= message_type %>"><%= message %></div>
 	<% end %>
 
+	<p>
+		<% if current_user.admin %>
+			<%= link_to "Delete User", @user, method: :delete,
+                                       		  data: { confirm: "Are you sure? This will permanently delete this user." } %>
+		<% else %>
+		<% end %>
+	</p>
+
 	<div class="user-info">
 		<%= render 'users/user_info' %>
 	</div>

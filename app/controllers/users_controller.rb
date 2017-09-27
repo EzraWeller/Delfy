@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user,       only: [:edit, :update, :index, :destroy]
   before_action :correct_user,         only: [:edit, :update]
+  before_action :admin_user,           only: [:destroy, :index]
 
   def show
     @user = User.find(params[:id])
@@ -59,6 +60,13 @@ class UsersController < ApplicationController
       flash[:danger] = "User info failed to update."
       redirect_to user_path(@user)
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:success] = "User deleted."
+    redirect_back_or(root_url)
   end
 
   private

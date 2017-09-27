@@ -1,5 +1,6 @@
 class IdeasController < ApplicationController
 	before_action :community_member, only: [:create]
+	before_action :admin_user,       only: [:destroy]
 	
 	def create
 		@idea = current_user.ideas.build(idea_params)
@@ -23,30 +24,18 @@ class IdeasController < ApplicationController
 	end
 
 	def search
-		# @searchterms = params[:search]
-		# @search = Idea.search do
-		#	fulltext params[:search], fields: :content
-		#	with :community_id, params[:community_id]
-		#	paginate per_page: 150
-		# end
-		# @searchbranches = Idea.search do
-		#	fulltext params[:search]
-		#	with :community_id, params[:community_id]
-		#	paginate per_page: 150
-		# end
-		# @justbranches = BranchIdea.search do
-		#	fulltext params[:search]
-		#	with :community_id, params[:community_id]
-		#	paginate per_page: 150
-		# end
-		# @ideas = @search.results
-		# @ideas_w_branches = @searchbranches.results - @ideas
-		# @branches = @justbranches.results
 		@ideas = Idea.search_content_for(params[:search]).where(community_id: params[:community_id])
 			@searchedbranches = BranchIdea.search_content_for('lorem').where(community_id: params[:community_id]).pluck(:id)
 			@branchesideas = Idea.where(id: BranchIdea.where(id: @searchedbranches).pluck(:idea_id)).distinct
 		@ideas_w_branches = @branchesideas - @ideas
 		@branches = BranchIdea.search_content_for(params[:search])
+	end
+
+	def destroy
+		@idea = Idea.find(params[:id])
+		@idea.destroy
+		flash[:success] = "Idea deleted."
+		redirect_to request.referrer
 	end
 
 	private

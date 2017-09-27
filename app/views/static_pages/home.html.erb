@@ -16,8 +16,14 @@
 		<div class="sidebar">
 			<div><%= render 'shared/user_chunk' %></div>
 			<div><%= link_to "Create Community", new_community_path %></div>
-			<div><%= link_to "Find Community",   communities_path %></div>
-			<div><%= link_to "Log out",          logout_path, method: :delete %></div>
+			<div><%= link_to "Find Community", communities_path %></div>
+			<div>
+				<% if @user.admin %>
+					<%= link_to "Users Index (admin only)", users_path %>
+				<% else %>
+				<% end %>
+			</div>
+			<div><%= link_to "Log out", logout_path, method: :delete %></div>
 		</div>
 		<div class="feed">
 			<% flash.each do |message_type, message| %>

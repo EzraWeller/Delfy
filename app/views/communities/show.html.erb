@@ -4,6 +4,13 @@
 		<div class="alert alert-<%= message_type %>"><%= message %></div>
 	<% end %>
 	<p>
+		<% if current_user.admin %>
+			<%= link_to "Delete Community", @community, method: :delete,
+                                       		 data: { confirm: "Are you sure? This will permanently delete this community." } %>
+		<% else %>
+		<% end %>
+	</p>
+	<p>
 		<% if @community.leader?(current_user) %>
 			<%= link_to 'Leader Functions', community_admin_path %>
 		<% else %>

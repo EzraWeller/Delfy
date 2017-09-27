@@ -1,7 +1,7 @@
 class Community < ApplicationRecord
 	has_many :memberships
 	has_many :users, through: :memberships
-	has_many :ideas
+	has_many :ideas, dependent: :destroy
 	has_many :branch_ideas
 	has_many :votes
 	has_many :invitations
@@ -13,4 +13,5 @@ class Community < ApplicationRecord
 	def leader?(user)
 		leader == user.id
 	end
+
 end

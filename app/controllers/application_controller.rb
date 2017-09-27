@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def admin_user
+      unless current_user.admin
+        flash[:danger] = "Admin only."
+        redirect_to request.referrer
+      end
+    end
+
 end

@@ -2,10 +2,6 @@ class StaticPagesController < ApplicationController
     def home
   		@user = current_user
         @idea = current_user.ideas.build if current_user
-        if @user
-            select_community(@user.communities.first) if @user.communities.count > 0
-        else
-        end
         @community = current_community if current_user
     end
 

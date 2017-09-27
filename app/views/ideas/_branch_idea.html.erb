@@ -16,5 +16,10 @@
 				<% end %>
 				<div class="branch-vote-count" id="<%= b.id %>_vote_count"><%= b.votes.count %></div>
 			</div>
+			<% if current_user.admin %>
+				<%= link_to "Delete branch", branch_idea_path(b), method: :delete,
+	                                       	  					  data: { confirm: "Are you sure? This will permanently delete this branch." } %>
+			<% else %>
+			<% end %>
 		</div>
 	</div>

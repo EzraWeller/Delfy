@@ -1,5 +1,6 @@
 class BranchIdeasController < ApplicationController
 	before_action :community_member, only: [:create]
+	before_action :admin_user,       only: [:destroy]
 
 	def create
 		@branch_idea = current_user.branch_ideas.build(branch_idea_params)
@@ -10,6 +11,13 @@ class BranchIdeasController < ApplicationController
 			flash[:danger] = "Branch idea creation failed."
 			redirect_to request.referrer
 		end
+	end
+
+	def destroy
+		@branch_idea = BranchIdea.find(params[:id])
+		@branch_idea.destroy
+		flash[:success] = "Branch idea deleted."
+		redirect_to request.referrer
 	end
 
 	private
