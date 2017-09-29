@@ -2,6 +2,17 @@
 
 <div>
   <%= form_for(@community, url: new_community_path) do |f| %>
+    <% if @community.errors.any? %>
+      <div class="alert alert-danger">
+        Error: 
+        <ul>
+          <% @community.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <%= f.label :name %>
     <%= f.text_field :name %>
 
