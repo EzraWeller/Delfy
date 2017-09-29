@@ -107,16 +107,12 @@ header {
 }
 
 a {
-	color: black;
+	color: #EA1BB1;
     text-decoration: none; 
 }
 
 a:hover {
-	text-shadow:
-    -1px -1px 0 #5AD048,
-    1px -1px 0 #5AD048,
-    -1px 1px 0 #5AD048,
-    1px 1px 0 #5AD048;
+	text-decoration: underline;
 }
 
 /* forms */
