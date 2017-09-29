@@ -1,0 +1,574 @@
+/* line 8, /mnt/d/DocumentsD/Programming/EzraWeller/RailsApps/Delfy/app/assets/stylesheets/communities.scss */
+.community-index {
+  margin-left: 20px;
+}
+
+/* line 12, /mnt/d/DocumentsD/Programming/EzraWeller/RailsApps/Delfy/app/assets/stylesheets/communities.scss */
+input[type=radio]:not(old) + label {
+  display: inline-block;
+  margin-left: -28px;
+  padding-left: 28px;
+  background: url("/assets/ic_radio_button_unchecked_black_24dp_1x.png") no-repeat 0 0;
+  line-height: 24px;
+}
+
+/* line 20, /mnt/d/DocumentsD/Programming/EzraWeller/RailsApps/Delfy/app/assets/stylesheets/communities.scss */
+input[type=radio]:not(old):checked + label {
+  background: url("/assets/ic_radio_button_checked_black_24dp_1x.png") no-repeat 0 0;
+}
+/* line 5, /mnt/d/DocumentsD/Programming/EzraWeller/RailsApps/Delfy/app/assets/stylesheets/static_pages.scss */
+.login-links {
+  margin-left: 20px;
+}
+
+/* line 9, /mnt/d/DocumentsD/Programming/EzraWeller/RailsApps/Delfy/app/assets/stylesheets/static_pages.scss */
+.title {
+  margin-left: 20px;
+}
+/* line 5, /mnt/d/DocumentsD/Programming/EzraWeller/RailsApps/Delfy/app/assets/stylesheets/users.scss */
+.user-index {
+  margin-left: 20px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+
+
+
+ */
+
+/* universal */
+
+
+html, body {
+	height: 100%;
+	background: #D4EAD1;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	font-family: 'Helvetica', sans-serif;
+	margin: 0px;
+}
+
+header {
+	display: flex;
+	flex-direction: row;
+	background: #5AD048;
+	z-index: 1;
+	height: 50px;
+	color: white;
+}
+
+.main {
+	display: flex;
+	flex-direction: row;
+	background: #D4EAD1;
+	position: absolute;
+	width: 100%;
+	min-height: 100%;
+	padding-top: 50px;
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: left;
+	background: #D4EAD1;
+	width: 400px;
+	padding: 0px 10px 0px 15px;
+}
+
+.feed {
+	background: #D4EAD1;
+	width: 100%;
+	padding-left: 25px;
+	border-left: 3px solid white;
+}
+
+.community_feed {
+	width: 100%;
+	height: 100%;
+}
+
+.logo {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	width: 430px;
+	margin-left: 15px;
+}
+
+.top-nav {
+	display: flex;
+	flex-direction: row;
+	justify-content: left;
+	align-items: center;
+	width: 100%;
+	padding-left: 15px;
+}
+
+.user-page, 
+.community-page, 
+.user-ideas-page, 
+.community-admin-page,
+.forgot_password,
+.reset_password {
+	margin-left: 20px;
+}
+
+.user-ideas-feed {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+.user-ideas-feed > div {
+	padding-right: 20px;
+}
+
+a {
+	color: #EA1BB1;
+    text-decoration: none; 
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/* forms */
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+textarea {
+	font-family: Helvetica;
+	font-size: 15px;
+	width: 60%;
+	height: 60px;
+	padding: 2px 18px 2px 2px;
+}
+
+textarea#branch_idea_content {
+	margin-top: 20px;
+}
+
+.idea-form {
+	margin-bottom: 20px;
+}
+
+.new_user        > input, 
+.new_community   > input,
+.new_session     > input,
+.edit_user       > input,
+.new_membership  > input,
+.edit_membership > input,
+.new_invitations > input,
+.new_reset       > input {
+	width: 40%;
+	margin: 10px 0px 10px 0px;
+}
+
+.new_community   > textarea,
+.new_invitations > textarea {
+	width: 40%;
+	height: 100px;
+}
+
+.new_user > input[type=submit] {
+	width: 160px;
+}
+
+.new_community > input[type=submit] {
+	width: 180px;
+}
+
+.new_session > input[type=submit] {
+	width: 100px;
+}
+
+.new_user,
+.new_community,
+.new_session {
+	margin-left: 20px
+}
+
+.user-info input[type=submit] {
+	width: 220px;
+}
+
+.new_invitations > input[type=submit] {
+	width: 80px;
+}
+
+.new_reset > input[type=submit] {
+	width: 80px;
+}
+
+.new_reset > input[type=email] {
+	width: 220px;
+}
+
+label[for="community_membership_setting"] {
+	margin-top: 10px;
+}
+
+input[type=radio] {
+	width   : 28px;
+ 	margin  : 0;
+ 	padding : 0;
+	opacity : 0;
+}
+
+input[type=submit] {
+	cursor: pointer;
+}
+
+/* buttons */
+
+.community-select-button-div {
+	float: left;
+	width: auto;
+	margin: 0px 5px 0px 5px;
+}
+
+input {
+	font-family: 'Helvetica', sans-serif;
+	font-size: 15px;
+	background-color: white;
+	border: none;
+	padding: 5px 10px 5px 10px;
+	color: #1A9407;
+}
+
+.new_idea > input, .new_branch_idea > input {
+	margin-top: 10px;
+	width: 50px;
+	color: #1A9407;
+}
+
+.edit_membership > input, .new_membership > input {
+	width: 80px;
+}
+
+.community-select-button input {
+	color: #1A9407;
+	height: 34px;
+}
+
+.vote-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.branch-bottom > .vote-button, .root-bottom > .vote-button {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	width: 80px;
+}
+
+.vote-count {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 140px;
+	margin: 0px;
+}
+
+.vote-button button {
+	background: none;
+	width: 36px;
+	height: 36px;
+	border: 0px solid black;
+	outline: 0px solid;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+p.vote-count {
+	margin-left: 10px;
+}
+
+.sort-buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.sort-branch-buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	
+}
+
+.sort-button {
+	float: left;
+	width: auto;
+	padding: 0px 5px 0px 5px;
+}
+
+.sort-button input {
+	color: #1A9407;
+}
+
+input.disabled, input[disabled] {
+	color: black;
+	outline: 2px solid black;
+}
+
+input#user_old_password {
+	width: 200px;
+}
+
+/* icons */
+
+.material-icons {
+	color: #1A9407;
+}
+
+/* footer */
+
+footer {
+
+}
+
+/* ideas */
+
+.branches {
+	margin-left: 50px;
+	font-size: 13px;
+}
+
+.voted-for {
+	box-shadow: 0px 0px 0px 4px #5AD048;
+}
+
+.base-idea {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: white;
+	padding: 10px 10px 2px 10px;
+	width: 60%;
+	margin: 20px 5px 20px 0px;
+	color: #1A9407;
+	border-radius: 1px;
+}
+
+.base-idea-inside {
+	display: flex;
+	flex-direction: column;
+}
+
+.base-idea-bottom {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 0px 12px 0px 0px;
+}
+
+.base-idea-info {
+	font-size: 13px;
+}
+
+.root-idea, .feed-root-idea {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: white;
+	padding: 10px 10px 0px 10px;
+	width: 60%;
+	margin: 5px 5px 15px 0px;
+	color: #1A9407;
+	border-radius: 1px;
+}
+
+.side-feed-root, .feed-branch-idea {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	background: white;
+	padding: 5px 10px 5px 10px;
+	width: 260px;
+	margin: 5px 5px 15px 0px;
+	color: #1A9407;
+	border-radius: 1px;
+}
+
+#sidebar-votes .root-idea {
+	width: 260px;
+}
+
+.root-top, .branch-top {
+	font-size: 15px;
+}
+
+.root-bottom {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.branch-idea {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background: white;
+	padding: 10px 10px 0px 10px;
+	width: 60%;
+	margin: 10px 5px 10px 0px;
+	color: #1A9407;
+	border-radius: 1px;
+}
+
+.branch-bottom {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.branch-bottom-left {
+	font-size: 13px;
+}
+
+.user-page-votes, #sidebar-votes {
+	display: flex;
+	flex-direction: column;
+	font-size: 13px;
+}
+
+#sidebar-votes .root-bottom-left, #sidebar-votes .branch-bottom-left {
+	font-size: 11px;
+}
+
+/* error messages */
+
+.alert {
+	margin-top: 10px;
+}
+
+.alert-danger {
+	color: red;
+}
+
+.alert-success, .alert-info {
+	color: green;
+}
+
+.alert-warning {
+	color: orange;
+}
+/*
+ * CSS File of Material icons.
+ * CSS code based on:
+ * https://google.github.io/material-design-icons/#icon-font-for-the-web
+ */
+
+
+
+
+
+
+/* Use the font */
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/assets/MaterialIcons-Regular-8c998b4a9c0acbb9fe5dd572c206a5a33fdd5ca2b58db87fc3b893beac85068d.eot'); /* For IE6-8 */
+  src: local('Material Icons'),
+       local('MaterialIcons-Regular'),
+       url('/assets/MaterialIcons-Regular-a87d66c91b2e7dc5530aef76c03bd6a3d25ea5826110bf4803b561b811cc8726.woff2') format('woff2'),
+       url('/assets/MaterialIcons-Regular-c4a1baec300d09e03a8380b85918267ee80faae8e00c6c56b48e2e74b1d9b38d.woff') format('woff'),
+       url('/assets/MaterialIcons-Regular-b7f4a3ab562048f28dd1fa691601bc43363a61d0f876d16d8316c52e4f32d696.ttf') format('truetype');
+}
+
+/* Base class */
+.material-icons,
+.mi {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+/* Rules for sizing the icon. */
+.material-icons.md-18, .mi.md-18 { font-size: 18px; }
+.material-icons.md-24, .mi.md-24 { font-size: 24px; }
+.material-icons.md-36, .mi.md-36 { font-size: 36px; }
+.material-icons.md-48, .mi.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark, .mi.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive, .mi.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light, .mi.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive, .mi.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+/* Rules to rotate items */
+.material-icons.r90, .mi.r90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.material-icons.r180, .mi.r180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.material-icons.r270, .mi.r270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+.material-icons.flip-horizontal, .mi.flip-horizontal {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.material-icons.flip-vertical, .mi.flip-vertical {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1);
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
