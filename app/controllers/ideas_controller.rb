@@ -1,6 +1,6 @@
 class IdeasController < ApplicationController
-	before_action :community_member, only: [:create]
-	before_action :admin_user,       only: [:destroy]
+	before_action :community_member,   only: [:create]
+	before_action :user_owns_or_admin, only: [:destroy]
 	
 	def create
 		@idea = current_user.ideas.build(idea_params)
@@ -46,6 +46,11 @@ class IdeasController < ApplicationController
 
     	def branch_idea_sort_params
     		params.require(:branch_sort_style)
+    	end
+
+    	def user_owns_or_admin
+    		@idea = Idea.find(params[:id])
+    		current_user == @idea.user && @idea.votes.where.not(user: current_user).count == 0 || current_user.admin == true
     	end
 
 end

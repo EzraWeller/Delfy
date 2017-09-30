@@ -6,11 +6,6 @@
 		<%= render 'ideas/root_idea', i: i %>
 		<div class="vote-button" id="<%= i.id %>_feed_button">
 			<%= render 'ideas/show_branches_button', idea: i %>
-			<% if current_user.admin %>
-				<%= link_to "Delete idea", idea_path(i), method: :delete,
-		                                       	  				  data: { confirm: "Are you sure? This will permanently delete this idea and its branches." } %>
-			<% else %>
-			<% end %>
 		</div>
 	</div>
 <div>

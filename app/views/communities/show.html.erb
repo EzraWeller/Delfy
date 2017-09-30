@@ -4,9 +4,9 @@
 		<div class="alert alert-<%= message_type %>"><%= message %></div>
 	<% end %>
 	<p>
-		<% if current_user.admin %>
+		<% if current_user.admin || @community.leader == current_user.id && @community.users.where.not(id: current_user.id).count == 0 %>
 			<%= link_to "Delete Community", @community, method: :delete,
-                                       		 data: { confirm: "Are you sure? This will permanently delete this community." } %>
+                                       		            data: { confirm: "Are you sure? This will permanently delete this community." } %>
 		<% else %>
 		<% end %>
 	</p>

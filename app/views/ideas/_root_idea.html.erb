@@ -1,5 +1,12 @@
 <div id="<%= i.id %>_root_idea">
 	<div class="base-idea-inside">
-		<div>"<%= i.content %>"</div>
+		<div>
+			"<%= i.content %>"
+			<% if current_user.admin || i.user == current_user && i.votes.where.not(user: current_user).count == 0 %>
+				<%= link_to "Delete idea", idea_path(i), method: :delete,
+		                                       	  		 data: { confirm: "Are you sure? This will permanently delete this idea and its branches." } %>
+			<% else %>
+			<% end %>
+		</div>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 class CommunitiesController < ApplicationController
-	before_action :logged_in_user, only: [:create, :new, :show, :admin]
-	before_action :leader,         only: [:admin]
-	before_action :admin_user,     only: [:destroy]
+	before_action :logged_in_user,  only: [:create, :new, :show, :admin]
+	before_action :leader,          only: [:admin]
+	before_action :leader_or_admin, only: [:destroy]
 
 	def show
     	@community = Community.find(params[:id])
@@ -66,5 +66,10 @@ class CommunitiesController < ApplicationController
 				flash[:danger] = "Only community leaders can access admin options."
 			end
 		end
+
+		def leader_or_admin
+    		@community = Community.find(params[:id])
+    		@community.leader?(current_user) && @community.users.where.not(id: current_user.id).count == 0 || current_user.admin == true
+    	end
 
 end

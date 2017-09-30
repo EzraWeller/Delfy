@@ -3,7 +3,14 @@
 <% else %>
 	<div class="branch-idea">
 <% end %>
-		<div class="branch-top">"<%= b.content %>"</div>
+		<div class="branch-top">
+			"<%= b.content %>"
+			<% if current_user.admin || b.user == current_user && b.votes.where.not(user: current_user).count == 0 %>
+				<%= link_to "Delete branch", branch_idea_path(b), method: :delete,
+	                                       	  					  data: { confirm: "Are you sure? This will permanently delete this branch." } %>
+			<% else %>
+			<% end %>
+		</div>
 		<div class="branch-bottom">
 			<div class="branch-bottom-left">
 				Posted <%= time_ago_in_words(b.created_at) %> ago by <%= User.find_by(id: b.user_id).name %>	
@@ -16,10 +23,5 @@
 				<% end %>
 				<div class="branch-vote-count" id="<%= b.id %>_vote_count"><%= b.votes.count %></div>
 			</div>
-			<% if current_user.admin %>
-				<%= link_to "Delete branch", branch_idea_path(b), method: :delete,
-	                                       	  					  data: { confirm: "Are you sure? This will permanently delete this branch." } %>
-			<% else %>
-			<% end %>
 		</div>
 	</div>

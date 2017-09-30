@@ -11,35 +11,38 @@
 
 	<div>
 		<h2>Membership Options</h2>
-		<p>
-			<h3>Invite people to the community:</h3>
-
-			<%= form_for community_invites_path(@community), html: { class: "new_invitations", remote: true } do |f| %>
-				<%= f.hidden_field :community_id, value: @community.id, name: "invitations[community_id]" %>
-
-				<%= f.label :emails, "Email addresses, separated by commas:", name: "invitations[emails]" %>
-				<%= f.text_area :emails, name: "invitations[emails]" %>
-
-				<%= f.submit "Invite" %>
-			<% end %>
-		</p>
-		<p>
-			<h3>Past invitations:</h3>
+		<p>Membership setting: <%= @community.membership_setting %></p>
+		<% if @community.membership_setting == "closed" %>
 			<p>
-				Total invitations: <%= @community.invitations.count %></br>
-				Total emails invited:<%= @community.invitations.pluck(:email).uniq.count %>
-			</p>
-			<% @invitations.each do |i| %>
-				<%= i.email %> <%= i.created_at %>
-				<% if i.accepted? %>
-					Accepted
-				<% else %>
-					Pending
+				<h3>Invite people to the community:</h3>
+
+				<%= form_for community_invites_path(@community), html: { class: "new_invitations", remote: true } do |f| %>
+					<%= f.hidden_field :community_id, value: @community.id, name: "invitations[community_id]" %>
+
+					<%= f.label :emails, "Email addresses, separated by commas:", name: "invitations[emails]" %>
+					<%= f.text_area :emails, name: "invitations[emails]" %>
+
+					<%= f.submit "Invite" %>
 				<% end %>
-				</br>
-			<% end %>
-			<%= paginate @invitations %>
-		</p>
+			</p>
+			<p>
+				<h3>Past invitations:</h3>
+				<p>
+					Total invitations: <%= @community.invitations.count %></br>
+					Total emails invited:<%= @community.invitations.pluck(:email).uniq.count %>
+				</p>
+				<% @invitations.each do |i| %>
+					<%= i.email %> <%= i.created_at %>
+					<% if i.accepted? %>
+						Accepted
+					<% else %>
+						Pending
+					<% end %>
+					</br>
+				<% end %>
+				<%= paginate @invitations %>
+			</p>
+		<% end %>
 	</div>
 
 	<div>
