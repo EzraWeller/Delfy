@@ -11,5 +11,5 @@
 			<%= material_icon.done.md_36.css_class('show-branches-icon') %>
 		<% end %>
 	<% end %>
-	<p class="<%= idea.id %> vote-count"><%= Vote.where(idea: idea).count %></p>
+	<div class="<%= idea.id %> vote-count"><%= Vote.where(idea: idea).count %></div>
 </div>
