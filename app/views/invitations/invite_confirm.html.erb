@@ -1,0 +1,35 @@
+<div class="invite-confirm">
+	<div>
+		<h2> Emails to be invited (<%= session[:emails_to_invite].count %>): </h2>
+	</div>
+	<div class="columns">
+		<div>
+			<% session[:emails_to_invite].each do |e| %>
+				<%= e %>
+				</br>
+			<% end %>
+		</div>
+		<div>
+			<% session[:emails_to_invite].each do |e| %>
+				<% if /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.match?(e) %>
+					<span style="color:#1A9407;">Valid</span>
+				<% else %>
+					<span style="color:red;">Invalid</span>
+				<% end %>
+				</br>
+			<% end %>
+		</div>
+	</div>
+
+	<p>
+		<%= form_for @invitation, url: send_invites_path(@community), html: { class: "send_invitations" } do |f| %>
+			<%= f.hidden_field :community_id, value: @community.id, name: "invitations[community_id]" %>
+
+			<%= f.submit "Send invites", data: { confirm: "Are you sure?" } %>
+		<% end %>
+	</p>
+
+	<p>
+		<%= link_to "Back", community_admin_path(@community) %>
+	</p>
+</div>

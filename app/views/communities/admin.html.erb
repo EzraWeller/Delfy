@@ -19,7 +19,7 @@
 				<%= form_for community_invites_path(@community), html: { class: "new_invitations", remote: true } do |f| %>
 					<%= f.hidden_field :community_id, value: @community.id, name: "invitations[community_id]" %>
 
-					<%= f.label :emails, "Email addresses, separated by commas:", name: "invitations[emails]" %>
+					<%= f.label :emails, "Up to 200 email addresses, separated by commas:", name: "invitations[emails]" %>
 					<%= f.text_area :emails, name: "invitations[emails]" %>
 
 					<%= f.submit "Invite" %>
@@ -27,30 +27,56 @@
 			</p>
 			<p>
 				<h3>Past invitations:</h3>
-				<p>
-					Total invitations: <%= @community.invitations.count %></br>
-					Total emails invited:<%= @community.invitations.pluck(:email).uniq.count %>
-				</p>
-				<% @invitations.each do |i| %>
-					<%= i.email %> <%= i.created_at %>
-					<% if i.accepted? %>
-						Accepted
-					<% else %>
-						Pending
-					<% end %>
-					</br>
-				<% end %>
+				<div class="columns">
+					<div>
+						Total invitations:</br>
+						Total emails invited:
+					</div>
+					<div>
+						<%= @community.invitations.count %></br>
+						<%= @community.invitations.pluck(:email).uniq.count %>
+					</div>
+				</div>
+				</br>
+				<div class="columns">
+					<div>
+						<strong>Email</strong></br>
+						<% @invitations.each do |i| %>
+							<%= i.email %>
+							</br>
+						<% end %>
+					</div>
+					<div>
+						<strong>Time sent</strong></br>
+						<% @invitations.each do |i| %>
+							<%= i.created_at %>
+							</br>
+						<% end %>
+					</div>
+					<div>
+						<strong>Status</strong></br>
+						<% @invitations.each do |i| %>
+							<% if i.accepted? %>
+								<span style="color:#1A9407;">Accepted</span>
+							<% else %>
+								<span style="color:orange;">Pending</span>
+							<% end %>
+							</br>
+						<% end %>
+					</div>
+				</div>
+				</br>
 				<%= paginate @invitations %>
 			</p>
 		<% end %>
 	</div>
 
-	<div>
+	<p>
 		<h2>Members</h2>
 		Total members: <%= @community.users.count %>
 		<% for user in @users %>
 			<p><%= link_to "#{user.name}", user_path(user) %><p>
 		<% end %>
 		<%= paginate @users %>
-	</div>
+	</p>
 </div>

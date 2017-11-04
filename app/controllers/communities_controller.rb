@@ -37,7 +37,7 @@ class CommunitiesController < ApplicationController
 		@community = Community.find(params[:id])
 		@invitation = Invitation.new
 		@users = @community.users.page(params[:page])
-		@invitations = @community.invitations.page(params[:page])
+		@invitations = @community.invitations.reorder(:email).page(params[:page])
 	end
 
 	def destroy
