@@ -1,15 +1,15 @@
 <div class="community-index">
 	<h1>Community Index</h1>
 	<div>
-	  <% @communities.each do |i| %>
-	      <p>
-	      	<h2><%= link_to "#{i.name}", community_path(id: i.id) %></h2>
-	      	<div>(<%= i.membership_setting %> membership)</div>
-	      	<div><%= i.description %></div>
-	      	<br>
-	      </p>
-	  <% end %>
-	  <%= paginate @communities %>
+		<%= form_tag search_communities_path, method: :get, remote: true do %>
+			<p>
+				<%= text_field_tag :search, params[:search] %>
+				<%= submit_tag "Search", name: nil %>
+			</p>
+		<% end %>
+	</div>
+	<div id="community-list">
+		<%= render 'community_list' %>
 	</div>
 	<%= link_to "Home", root_path %>
 </div>

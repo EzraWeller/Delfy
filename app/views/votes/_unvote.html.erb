@@ -5,12 +5,18 @@
 			html: { method: :delete }, remote: true) do |f| %>
 			<%= f.hidden_field :user_id, value: current_user.id %>
 			<%= f.hidden_field :branch_idea_id, value: i.id %>
-			<%= button_tag(type: 'submit', class: 'vote-button') do %>
-				<i class="material-icons md-24" 
-					onmouseover="this.innerHTML='close';" 
-					onmouseout="this.innerHTML='done';">
-						done
-				</i>
+			<% if @feed_owner && !(current_user == @feed_owner) %>
+				<%= button_tag(type: 'submit', class: 'vote-button', disabled: true) do %>
+					<i class="material-icons md-24">done</i>
+				<% end %>
+			<% else %>
+				<%= button_tag(type: 'submit', class: 'vote-button') do %>
+					<i class="material-icons md-24" 
+						onmouseover="this.innerHTML='close';" 
+						onmouseout="this.innerHTML='done';">
+							done
+					</i>
+				<% end %>
 			<% end %>
 		<% end %>
 	<% elsif i.class == Idea %>
@@ -19,12 +25,18 @@
 			<%= f.hidden_field :user_id, value: current_user.id %>
 			<%= f.hidden_field :idea_id, value: i.id %>
 			<%= f.hidden_field :root, value: "t" %>
-			<%= button_tag(type: 'submit', class: 'vote-button') do %>
-				<i class="material-icons md-24" 
-					onmouseover="this.innerHTML='close';" 
-					onmouseout="this.innerHTML='done';">
-						done
-				</i>
+			<% if @feed_owner && !(current_user == @feed_owner) %>
+				<%= button_tag(type: 'submit', class: 'vote-button', disabled: true) do %>
+					<i class="material-icons md-24">done</i>
+				<% end %>
+			<% else %>
+				<%= button_tag(type: 'submit', class: 'vote-button') do %>
+					<i class="material-icons md-24" 
+						onmouseover="this.innerHTML='close';" 
+						onmouseout="this.innerHTML='done';">
+							done
+					</i>
+				<% end %>
 			<% end %>
 		<% end %>
 	<% else %>

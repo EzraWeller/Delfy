@@ -10,8 +10,31 @@
 	</div>
 
 	<div>
-		<h2>Membership Options</h2>
-		<p>Membership setting: <%= @community.membership_setting %></p>
+		<p><strong>Name:</strong> <%= @community.name %></p>
+		<p><strong>Description:</strong> <%= @community.description %></p>
+		<p><strong>Membership setting:</strong> <%= @community.membership_setting %></p>
+
+		<h3>Edit settings</h3>
+		<%= form_for @community do |f| %>
+			<%= f.label :name %>
+		    <%= f.text_field :name %>
+
+		    <%= f.label :description %>
+		    <%= f.text_area :description %>
+
+		    <%= f.label :membership_setting do %>
+		    	<div>Membership Setting</div>
+			    <%= f.radio_button :membership_setting, 'open' %>
+			    <%= f.label :membership_setting, 
+			    	"Open (Anyone can join.)", value: 'open' %></br>
+			    <%= f.radio_button :membership_setting, 'closed' %>
+			    <%= f.label :membership_setting, 
+			    	"Closed (Only users you invite or who have an access key can join.)", value: "restricted" %>
+			<% end %>
+
+		    <%= f.submit "Save new community settings", data: {confirm: "Are you sure?"} %>
+		<% end %>
+
 		<% if @community.membership_setting == "closed" %>
 			<p>
 				<h3>Invite people to the community:</h3>
@@ -70,13 +93,4 @@
 			</p>
 		<% end %>
 	</div>
-
-	<p>
-		<h2>Members</h2>
-		Total members: <%= @community.users.count %>
-		<% for user in @users %>
-			<p><%= link_to "#{user.name}", user_path(user) %><p>
-		<% end %>
-		<%= paginate @users %>
-	</p>
 </div>

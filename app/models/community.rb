@@ -11,6 +11,10 @@ class Community < ApplicationRecord
 	validates(:leader,  presence: true)
 	paginates_per 25
 
+	include PgSearch
+	pg_search_scope :search_communities_for, against: [:name, :description]
+	multisearchable against: [:name, :description]
+
 	def leader?(user)
 		leader == user.id
 	end

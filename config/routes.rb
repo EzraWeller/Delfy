@@ -30,6 +30,10 @@ Rails.application.routes.draw do
   post   '/sort_branch_ideas',     to: 'ideas#sort_branch_ideas'
   get    '/search_ideas',          to: 'ideas#search',
                                        as: 'search_ideas'
+  get    '/search_communities',    to: 'communities#search',
+                                       as: 'search_communities'
+  get    '/communities/:id/users', to: 'communities#user_list',
+                                       as: 'user_list'
   get    '/communities/:id/admin', to: 'communities#admin',
                                        as: 'community_admin'
   post   '/communities/:id/admin', to: 'invitations#create_many',

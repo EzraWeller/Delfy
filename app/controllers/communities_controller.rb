@@ -1,7 +1,7 @@
 class CommunitiesController < ApplicationController
 	before_action :logged_in_user,  only: [:create, :new, :show, :admin]
 	before_action :leader,          only: [:admin]
-	before_action :leader_or_admin, only: [:destroy]
+	before_action :leader_or_admin, only: [:destroy, :update]
 
 	def show
     	@community = Community.find(params[:id])
@@ -25,6 +25,17 @@ class CommunitiesController < ApplicationController
 		end
 	end
 
+	def update
+		@community = Community.find(params[:id])
+		if @community.update_attributes(community_params)
+	      flash[:success] = "Community settings saved!"
+	      redirect_to community_admin_path(@community)
+	    else
+	      flash[:danger] = "Community settings failed to update."
+	      redirect_to community_admin_path(@community)
+	    end
+	end
+
 	def index
     	@communities = Community.all.page(params[:page])
 	end
@@ -40,11 +51,20 @@ class CommunitiesController < ApplicationController
 		@invitations = @community.invitations.reorder(:email).page(params[:page])
 	end
 
+	def user_list
+		@community = Community.find(params[:id])
+		@users = @community.users.page(params[:page])
+	end
+
 	def destroy
 		@community = Community.find(params[:id])
 		@community.destroy
 		flash[:success] = "Community deleted."
 		redirect_back_or(root_url)
+	end
+
+	def search
+		@communities = Community.search_communities_for(params[:search]).page(params[:page])
 	end
 
 	private

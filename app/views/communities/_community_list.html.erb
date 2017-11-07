@@ -1,0 +1,13 @@
+<% @communities.each do |c| %>
+  <p>
+  	<h2><%= link_to "#{c.name}", community_path(id: c.id) %></h2>
+  	<p><%= c.description %></p>
+  	<p>
+  		Members: <%= c.users.count %>
+  		<br>
+  		(<%= c.membership_setting %> membership)
+  	</p>
+  	<br>
+  </p>
+<% end %>
+<%= paginate @communities %>

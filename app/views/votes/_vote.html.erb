@@ -10,8 +10,14 @@
 			<%= f.hidden_field :idea_id, value: i.idea_id %>
 		<% else %>
 		<% end %>
-		<%= button_tag(type: 'submit', class: 'vote-button') do %>
-			<%= material_icon.done.md_24 %>
+		<% if @feed_owner && !(current_user == @feed_owner) %>
+			<%= button_tag(type: 'submit', class: 'vote-button', disabled: true) do %>
+				<%= material_icon.done.md_24 %>
+			<% end %>
+		<% else %>
+			<%= button_tag(type: 'submit', class: 'vote-button') do %>
+				<%= material_icon.done.md_24 %>
+			<% end %>
 		<% end %>
 	<% end %>
 </div>

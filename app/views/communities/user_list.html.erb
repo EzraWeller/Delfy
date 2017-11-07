@@ -1,0 +1,15 @@
+<div class="community-user-list">
+
+	<p><%= link_to "Home", root_path %></p>
+	<p><%= link_to "Community page for #{@community.name}", community_path(@community) %></p>
+
+	<p>
+		<h2>Members</h2>
+		Total members: <%= @community.users.count %>
+		<% for user in @users %>
+			<p><%= link_to "#{user.name}", user_path(user) %><p>
+		<% end %>
+		<%= paginate @users %>
+	</p>
+
+</div>

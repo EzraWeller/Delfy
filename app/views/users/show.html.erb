@@ -1,5 +1,6 @@
 <div class="user-page">
 	<p><%= link_to "Home", root_path %></p>
+	<% request.original_url.remove("#{root_url}users/") %>
 
 	<% flash.each do |message_type, message| %>
 		<div class="alert alert-<%= message_type %>"><%= message %></div>
@@ -17,16 +18,18 @@
 		<%= render 'users/user_info' %>
 	</div>
 
-	<div class="user-page-votes">
+	<div class="user-page-votes" id="<%= @user.id %>">
 		<%= render 'users/user_vote_feed', user: @user %>
 	</div>
 
-	<div>
-		<h2>Community Leader of:</h2>
-		<% @leadcommunities.each do |l| %>
-			<p><%= link_to "#{l.name}", community_path(id: l.id) %></p>
-		<% end %>
-	</div>
+	<% if Community.where(leader: @user.id).count > 0 %>
+		<div>
+			<h2>Community Leader of:</h2>
+			<% @leadcommunities.each do |l| %>
+				<p><%= link_to "#{l.name}", community_path(id: l.id) %></p>
+			<% end %>
+		</div>
+	<% end %>
 
 	<div>
 		<h2>Community Member of:</h2>
