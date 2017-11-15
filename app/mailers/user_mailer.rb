@@ -7,14 +7,22 @@ class UserMailer < ApplicationMailer
   #
   def account_activation(user)
     @user = user
-    mail to: user.email, subject: "Account activation"
+    mail to: user.email, subject: "Account activation [Delfy]"
   end
 
   def community_invitation(invitation)
     @invitation = invitation
     @email = @invitation.email
     @community = @invitation.community
-    mail to: @email, subject: "Community invitation"
+    mail to: @email, subject: "Community invitation [Delfy]"
+  end
+
+  def remove_membership(membership) 
+    @user = membership.user
+    @community = membership.community
+    @email = @user.email
+    @reason = membership.removal_reason
+    mail to: @email, subject: "#{@community.name} membership removed [Delfy]"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -24,6 +32,6 @@ class UserMailer < ApplicationMailer
   #
   def password_reset(user)
     @user = user
-    mail to: user.email, subject: "Password reset"
+    mail to: user.email, subject: "Password reset [Delfy]"
   end
 end

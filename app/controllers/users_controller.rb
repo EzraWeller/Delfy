@@ -70,6 +70,11 @@ class UsersController < ApplicationController
     redirect_back_or(root_url)
   end
 
+  def search
+    @users = User.search_users_for(params[:search]).page(params[:page])
+    @community = Community.find(params[:community_id])
+  end
+
   private
   
     def user_params

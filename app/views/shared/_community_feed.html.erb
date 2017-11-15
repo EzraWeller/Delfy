@@ -1,6 +1,19 @@
 <h1><%= link_to current_community.name, community_path(current_community) %></h1>
 <p><%= current_community.description %></p>
 <p>
+	<strong>Latest leader message:</strong>
+		<% if current_community.leader_messages.exists? %>
+			<span class="alert-success">"<%= current_community.leader_messages.last.content %>"</span>
+		<% else %>
+			-none-
+		<% end %>
+</p>
+<% if current_community.leader?(current_user) %>
+	<p><%= link_to 'Leader Functions', community_admin_path(current_community) %> 
+		   (create leader messages, send invitations, more)</p>
+<% else %>
+<% end %>
+<p>
 	<strong class="stat"><%= current_community.users.count %></strong>
 	<%= link_to "members", user_list_path(current_community) %>
 	<br>

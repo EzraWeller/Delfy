@@ -1,0 +1,10 @@
+<%= form_for membership, url: remove_member_path(membership), remote: true do |f| %>
+	<%= f.label :reason, "Explain why you are removing this user from the community. 
+	                      This will be sent to the user. (400 char max)" %>
+	<%= f.text_area :removal_reason %>
+
+	<%= f.hidden_field :community_id, value: membership.community.id %>
+	<%= f.hidden_field :user_id, value: membership.user.id %>
+
+	<%= f.submit "Remove user", data: { confirm: "Are you sure?"} %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170926044636) do
+ActiveRecord::Schema.define(version: 20171115194942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20170926044636) do
     t.string   "description"
     t.integer  "leader"
     t.string   "membership_setting"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_communities_on_deleted_at", using: :btree
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -57,11 +59,22 @@ ActiveRecord::Schema.define(version: 20170926044636) do
     t.boolean  "accepted",      default: false
   end
 
-  create_table "memberships", force: :cascade do |t|
+  create_table "leader_messages", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "community_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "content"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "community_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "removal_reason"
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_memberships_on_deleted_at", using: :btree
     t.index ["user_id", "community_id"], name: "index_memberships_on_user_id_and_community_id", unique: true, using: :btree
   end
 

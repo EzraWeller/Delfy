@@ -3,18 +3,70 @@
 		<div class="alert alert-<%= message_type %>"><%= message %></div>
 	<% end %>
 
-	<p><%= link_to "Back", community_path(@community) %></p>
+	<p><%= link_to "Main community page", community_path(@community) %></p>
+	<p><%= link_to "Home", root_path %></p>
 
 	<div>
-		<h1><%= @community.name %> Admin Options</h1>
+		<h1><%= @community.name %> Leader Functions</h1>
 	</div>
 
 	<div>
+		<h2>Leader Messages</h2>
+
+		<div>
+			<h3>Current leader message</h3> 
+				<% if @community.leader_messages.exists? %>
+					<span class="alert-success">"<%= @community.leader_messages.last.content %>"</span>
+				<% else %>
+					-none-
+				<% end %>
+		</div>
+		</br>
+		<h3>Post new leader message</h3>
+		<%= form_for @community.leader_messages.build, remote: true do |f| %>
+			<%= f.text_area :content %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.hidden_field :community_id, value: @community.id %>
+
+			<%= f.submit "Set as current leader message" %>
+		<% end %>
+
+		<h3>Past leader messages</h3>
+			<div class="columns">
+				<div>
+					Total leader messages: <%= @community.leader_messages.count %>
+				</div>
+			</div>
+			</br>
+			<% if @past_messages == true %>
+				<div class="columns">
+					<div>
+						<strong>Message</strong></br>
+						<% @past_messages.each do |p| %>
+							"<%= p.content %>"
+							</br>
+						<% end %>
+					</div>
+					<div>
+						<strong>Time sent</strong></br>
+						<% @past_messages.each do |p| %>
+							<%= p.created_at.to_formatted_s(:long) %>
+							</br>
+						<% end %>
+					</div>
+				</div>
+				</br>
+				<%= paginate @past_messages %>
+			<% end %>
+	</div>
+	<hr>
+	<div>
+		<h2>Community Info</h2>
 		<p><strong>Name:</strong> <%= @community.name %></p>
 		<p><strong>Description:</strong> <%= @community.description %></p>
 		<p><strong>Membership setting:</strong> <%= @community.membership_setting %></p>
 
-		<h3>Edit settings</h3>
+		<h3>Edit info</h3>
 		<%= form_for @community do |f| %>
 			<%= f.label :name %>
 		    <%= f.text_field :name %>
@@ -34,9 +86,12 @@
 
 		    <%= f.submit "Save new community settings", data: {confirm: "Are you sure?"} %>
 		<% end %>
-
+	</div>
+	<hr>
+	<div>
 		<% if @community.membership_setting == "closed" %>
 			<p>
+				<h2>Invitations</h2>
 				<h3>Invite people to the community:</h3>
 
 				<%= form_for community_invites_path(@community), html: { class: "new_invitations", remote: true } do |f| %>
@@ -72,7 +127,7 @@
 					<div>
 						<strong>Time sent</strong></br>
 						<% @invitations.each do |i| %>
-							<%= i.created_at %>
+							<%= i.created_at.to_formatted_s(:long) %>
 							</br>
 						<% end %>
 					</div>
@@ -91,6 +146,25 @@
 				</br>
 				<%= paginate @invitations %>
 			</p>
+			<hr>
 		<% end %>
+	</div>
+	<div>
+	<p>
+		<h2>Members</h2>
+		<p>
+			Community leaders of closed communities may remove members from their communities, but they must give a reason for the removal that will be sent to the removed member and Delfy admins.
+		</p>
+		Total members: <%= @community.users.count %>
+		<%= form_tag search_users_path, method: :get, remote: true do %>
+			<p>
+				<%= text_field_tag :search, params[:search] %>
+				<%= hidden_field_tag :community_id, params[:community_id], value: @community.id %>
+				<%= submit_tag "Search (by name or email)", name: nil %>
+			</p>
+		<% end %>
+		<div id="user-list">
+			<%= render 'users/user_list', users: @users, community: @community %>
+		</div>
 	</div>
 </div>

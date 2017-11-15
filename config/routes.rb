@@ -32,6 +32,8 @@ Rails.application.routes.draw do
                                        as: 'search_ideas'
   get    '/search_communities',    to: 'communities#search',
                                        as: 'search_communities'
+  get    '/search_users',          to: 'users#search',
+                                       as: 'search_users'
   get    '/communities/:id/users', to: 'communities#user_list',
                                        as: 'user_list'
   get    '/communities/:id/admin', to: 'communities#admin',
@@ -42,6 +44,8 @@ Rails.application.routes.draw do
                                        as: 'invite_confirm'
   post   '/communities/:id/invite', to: 'invitations#send_many',
                                        as: 'send_invites'
+  patch '/memberships/:id/remove', to: 'memberships#remove',
+                                       as: 'remove_member'
   resources :users do
   	member do
   		get :communities
@@ -56,4 +60,5 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :invitations,         only: [:create]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :leader_messages
 end

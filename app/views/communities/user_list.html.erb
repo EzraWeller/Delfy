@@ -6,10 +6,7 @@
 	<p>
 		<h2>Members</h2>
 		Total members: <%= @community.users.count %>
-		<% for user in @users %>
-			<p><%= link_to "#{user.name}", user_path(user) %><p>
-		<% end %>
-		<%= paginate @users %>
+		<%= render 'users/user_list', users: @users, community: @community %>
 	</p>
 
 </div>

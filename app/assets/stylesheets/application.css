@@ -168,7 +168,8 @@ body {
 
 a {
 	color: #EA1BB1;
-    text-decoration: none; 
+    text-decoration: none;
+    cursor: pointer;
 }
 
 a:hover {
@@ -206,7 +207,7 @@ form > p > input[type=submit] {
 textarea {
 	font-family: Helvetica;
 	font-size: 15px;
-	width: 60%;
+	width: 80%;
 	height: 60px;
 	padding: 2px 18px 2px 2px;
 	margin-top: 5px;
@@ -222,23 +223,25 @@ textarea#branch_idea_content {
 	margin-bottom: 20px;
 }
 
-.new_user          > input, 
-.new_community     > input,
-.edit_community    > input,
-.new_session       > input,
-.edit_user         > input,
-.new_membership    > input,
-.edit_membership   > input,
-.new_invitations   > input,
-.new_reset         > input,
-.field_with_errors > input {
+.new_user           > input, 
+.new_community      > input,
+.edit_community     > input,
+.new_session        > input,
+.edit_user          > input,
+.new_membership     > input,
+.edit_membership    > input,
+.new_invitations    > input,
+.new_reset          > input,
+.new_leader_message > input,
+.field_with_errors  > input {
 	width: 40%;
 	margin: 5px 0px 10px 0px;
 }
 
-.new_community   > textarea,
-.edit_community  > textarea,
-.new_invitations > textarea {
+.new_community      > textarea,
+.edit_community     > textarea,
+.new_invitations    > textarea,
+.new_leader_message > textarea {
 	width: 40%;
 	height: 100px;
 }
@@ -283,6 +286,10 @@ textarea#branch_idea_content {
 
 .new_reset > input[type=email] {
 	width: 220px;
+}
+
+.new_leader_message > input[type=submit] {
+	width: 240px;
 }
 
 label[for="community_membership_setting"] {
@@ -531,7 +538,7 @@ footer {
 	justify-content: space-between;
 	background: white;
 	padding: 10px 10px 2px 10px;
-	width: 60%;
+	width: 80%;
 	margin: 20px 5px 20px 0px;
 	color: #1A9407;
 	border-radius: 1px;
@@ -559,7 +566,7 @@ footer {
 	justify-content: space-between;
 	background: white;
 	padding: 10px 10px 0px 10px;
-	width: 60%;
+	width: 70%;
 	margin: 5px 5px 15px 0px;
 	color: #1A9407;
 	border-radius: 1px;
@@ -573,6 +580,7 @@ footer {
 	background: white;
 	padding: 5px 10px 5px 10px;
 	max-width: 300px;
+	min-width: 200px;
 	margin: 5px 5px 15px 0px;
 	color: #1A9407;
 	border-radius: 1px;
@@ -599,7 +607,7 @@ footer {
 	justify-content: space-between;
 	background: white;
 	padding: 10px 10px 0px 10px;
-	width: 60%;
+	width: 70%;
 	margin: 10px 5px 10px 0px;
 	color: #1A9407;
 	border-radius: 1px;
@@ -626,8 +634,8 @@ footer {
 	font-size: 11px;
 }
 
-.side-feed-root .root-top, .side-feed-branch .branch-top {
-	max-width: 60%;
+.side-feed-root .root-top, .side-feed-branch .branch-top, .feed-branch-idea .branch-top {
+	max-width: 70%;
 }
 
 /* error messages */

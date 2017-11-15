@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :branch_ideas
   has_many :votes, dependent: :destroy
   has_many :invitations
+  has_many :leader_messages
   validates(:name,  presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: true})
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates(:email, presence: true, length: { maximum: 255 }, 
@@ -15,6 +16,10 @@ class User < ApplicationRecord
 
   before_save   :downcase_email
   before_create :create_activation_digest
+
+  include PgSearch
+  pg_search_scope :search_users_for, against: [:name, :email]
+  multisearchable against: [:name, :email]
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -30,7 +35,7 @@ class User < ApplicationRecord
 
   # Leaves a community.
   def leave(community)
-    communities.delete(community)
+    memberships.find_by(community_id: community.id).destroy
   end
 
   # Returns true if the user is a member of the community.
@@ -72,6 +77,11 @@ class User < ApplicationRecord
   # Sends community invitation email.
   def invite(invitation)
     UserMailer.community_invitation(invitation).deliver_now
+  end
+
+  # Sends removal reason email.
+  def send_removal(membership)
+    UserMailer.remove_membership(membership).deliver_now
   end
 
   # Remembers a user in the database for use in persistent sessions.

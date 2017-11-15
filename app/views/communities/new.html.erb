@@ -28,7 +28,7 @@
 	    <%= f.radio_button :membership_setting, 'closed' %>
 	    <%= f.label :membership_setting, 
 	    	"Closed (Only users you invite or who have an access key can join.)", value: "restricted" %>
-	<% end %>
+	  <% end %>
 
   	<%= f.hidden_field :leader, value: current_user.id %>
 

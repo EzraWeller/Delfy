@@ -1,0 +1,22 @@
+<% for user in users %>
+	<p>
+		<%= link_to "#{user.name}", user_path(user) %>
+		<% if community.membership_setting == "closed" && !(user.id == community.leader) && 
+			  current_user.id == community.leader %>
+			<a id="<%= user.id %> show-remove" 
+				onclick = "getElementById('<%= user.id %> remove-form').style.display = 'inline';
+						   getElementById('<%= user.id %> show-remove').style.display = 'none'">
+				Remove
+			</a>
+		    <div id="<%= user.id %> remove-form" style="display: none;">
+				<%= render 'memberships/removal_form', 
+				    membership: Membership.find_by(user_id: user, community_id: community) %>
+				<a onclick = "getElementById('<%= user.id %> remove-form').style.display = 'none';
+							  getElementById('<%= user.id %> show-remove').style.display = 'inline'">
+					Hide
+				</a>
+		    </div>
+		<% end %>
+	</p>
+<% end %>
+<%= paginate users %>

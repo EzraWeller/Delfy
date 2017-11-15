@@ -35,6 +35,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Hide some models when deleted instead of truly deleting
+gem 'paranoia', '~> 2.4'
+
 # icons
 gem 'material_icons'
 

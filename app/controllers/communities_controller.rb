@@ -49,6 +49,9 @@ class CommunitiesController < ApplicationController
 		@invitation = Invitation.new
 		@users = @community.users.page(params[:page])
 		@invitations = @community.invitations.reorder(:email).page(params[:page])
+		if @community.leader_messages == true
+			@past_messages = @community.leader_messages.where.not(id: @community.leader_messages.last.id).page(params[:page])
+		end
 	end
 
 	def user_list

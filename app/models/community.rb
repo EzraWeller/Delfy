@@ -5,11 +5,15 @@ class Community < ApplicationRecord
 	has_many :branch_ideas
 	has_many :votes
 	has_many :invitations
+	has_many :leader_messages
 	default_scope -> { order(:name) }
 	validates(:name,  presence: true, length: { maximum: 50 }, uniqueness: { case_sensitive: false })
 	validates(:description,  presence: true, length: { maximum: 400 })
 	validates(:leader,  presence: true)
 	paginates_per 25
+
+	# Prevents true deletion unless "really_destroy!"-ed
+	acts_as_paranoid
 
 	include PgSearch
 	pg_search_scope :search_communities_for, against: [:name, :description]

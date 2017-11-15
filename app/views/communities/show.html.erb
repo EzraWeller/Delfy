@@ -10,12 +10,6 @@
 		<% else %>
 		<% end %>
 	</p>
-	<p>
-		<% if @community.leader?(current_user) %>
-			<%= link_to 'Leader Functions', community_admin_path %>
-		<% else %>
-		<% end %>
-	</p>
 	<div class="joinleave-form"><%= render 'joinleave_form' %></div>
 	<div id="community_feed">
 		<%= render 'shared/community_feed' %>	
