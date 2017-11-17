@@ -2,5 +2,5 @@
     <%= f.text_area :content, placeholder: "Compose new idea: what's the biggest problem you have in #{current_community.name}?" %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :community_id, value: current_community.id %>
-  <%= f.submit "Post" %>
+  	<%= f.submit "Post" %>
 <% end %>
