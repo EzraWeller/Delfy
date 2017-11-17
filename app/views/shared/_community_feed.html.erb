@@ -10,7 +10,7 @@
 </p>
 <% if current_community.leader?(current_user) %>
 	<p><%= link_to 'Leader Functions', community_admin_path(current_community) %> 
-		   (create leader messages, send invitations, more)</p>
+		   (create leader messages, change settings, send invitations, manage members)</p>
 <% else %>
 <% end %>
 <p>

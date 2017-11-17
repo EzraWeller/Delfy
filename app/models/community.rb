@@ -12,9 +12,6 @@ class Community < ApplicationRecord
 	validates(:leader,  presence: true)
 	paginates_per 25
 
-	# Prevents true deletion unless "really_destroy!"-ed
-	acts_as_paranoid
-
 	include PgSearch
 	pg_search_scope :search_communities_for, against: [:name, :description]
 	multisearchable against: [:name, :description]

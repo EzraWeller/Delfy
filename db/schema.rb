@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115194942) do
+ActiveRecord::Schema.define(version: 20171116231220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,10 +72,10 @@ ActiveRecord::Schema.define(version: 20171115194942) do
     t.integer  "community_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "removal_reason"
     t.datetime "deleted_at"
+    t.string   "removal_reason"
     t.index ["deleted_at"], name: "index_memberships_on_deleted_at", using: :btree
-    t.index ["user_id", "community_id"], name: "index_memberships_on_user_id_and_community_id", unique: true, using: :btree
+    t.index ["user_id", "community_id"], name: "index_memberships_on_user_id_and_community_id", using: :btree
   end
 
   create_table "pg_search_documents", force: :cascade do |t|

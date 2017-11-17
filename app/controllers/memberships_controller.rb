@@ -1,6 +1,7 @@
 class MembershipsController < ApplicationController
 	before_action :logged_in_user
 	before_action :leader, only: [:remove]
+	before_action :unique, only: [:create]
 
 	def create
 		@community = Community.find(params[:community_id])
@@ -63,6 +64,14 @@ class MembershipsController < ApplicationController
 
 		def remove_params
 			params.require(:membership).permit(:removal_reason, :community_id, :user_id)
+		end
+
+		def unique
+			@community = Community.find(params[:community_id])
+			if Membership.where(user_id: current_user, community_id: @community).exists?
+				flash[:danger] = "Already a member of this community."
+				redirect_to @community
+			end
 		end
 
 end

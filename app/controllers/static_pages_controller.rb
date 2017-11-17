@@ -1,16 +1,19 @@
 class StaticPagesController < ApplicationController
+
     def home
   		@user = current_user
-        @idea = current_user.ideas.build if current_user
-        # select_community(current_user.communities.first)
         if current_user
+            @idea = current_user.ideas.build
             @community = current_community
-            @first_communities = [current_user.communities.first, current_user.communities.second, current_user.communities.third] - [nil]
+            @first_communities = [current_user.communities.first, current_user.communities.second, 
+                                  current_user.communities.third] - [nil]
             if @first_communities.include?(@community)
-                @menu_communities = [current_user.communities.first, current_user.communities.second, current_user.communities.third] - [nil]
+                @menu_communities = [current_user.communities.first, current_user.communities.second, 
+                                     current_user.communities.third] - [nil]
                 @dropdown_communities = current_user.communities - @menu_communities
             else
-                @menu_communities = [current_user.communities.first, current_user.communities.second, @community] - [nil]
+                @menu_communities = [current_user.communities.first, current_user.communities.second, 
+                                     @community] - [nil]
                 @dropdown_communities = current_user.communities - @menu_communities
             end
         end
@@ -55,4 +58,5 @@ class StaticPagesController < ApplicationController
             format.js
         end
     end
+
 end
