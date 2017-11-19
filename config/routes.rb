@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root                  		           'static_pages#home'
+  get    '/about',                 to: 'static_pages#about'
   post   '/select_community',      to: 'static_pages#set_community', 
                                         as: 'select_community'
   post   '/branch_feed',           to: 'static_pages#show_branch_feed',

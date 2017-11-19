@@ -1,6 +1,21 @@
 <%= form_for(current_user.ideas.build) do |f| %>
-    <%= f.text_area :content, placeholder: "Compose new idea: what's the biggest problem you have in #{current_community.name}?" %>
+    <%= f.text_area :content, placeholder: "Compose new idea: what's the biggest problem you have in #{current_community.name}? (max 140 char.)" %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :community_id, value: current_community.id %>
-  	<%= f.submit "Post" %>
+  	<div class="post-with-guide">
+  		<div>
+  			<%= f.submit "Post" %>
+  		</div>
+  		<div>
+  			<a class="mouse-over-guide">
+  				How?
+	  			<div class="tooltip">
+	  				<ul>
+	  					<li>Write about what you want to change in this community.</li>
+						  <li>Don’t name names.</li>
+					</ul>
+				</div>
+			</a>
+  		</div>
+  	</div>
 <% end %>

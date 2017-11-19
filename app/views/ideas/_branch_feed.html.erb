@@ -1,8 +1,8 @@
 <div class="branches">
-	<p>Root:</p>
+	<h3>Root:</h3>
 	<%= render 'ideas/feed_root_idea', idea: idea %>
 
-	<p>Branches:</p>
+	<h3>Branches:</h3>
 	<div id="branch_idea_form"><%= render 'branch_ideas/branch_idea_form', idea: idea %></div>
 	<% if idea.branches.any? %>
 		<div class="sort-branch-buttons" id="branch_idea_sort_buttons">

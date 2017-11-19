@@ -19,6 +19,9 @@ class StaticPagesController < ApplicationController
         end
     end
 
+    def about
+    end
+
     def set_community
     	@community = Community.find(params[:community_id])
     	select_community(@community)

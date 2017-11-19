@@ -31,6 +31,7 @@
 	<div class="main">
 		<div class="sidebar">
 			<div><%= render 'shared/user_chunk' %></div>
+			<div><%= link_to "About Delfy", about_path %></div>
 			<div><%= link_to "Create Community", new_community_path %></div>
 			<div><%= link_to "Find Community", communities_path %></div>
 			<div>
@@ -54,8 +55,9 @@
 			<% flash.each do |message_type, message| %>
 				<div class="alert alert-<%= message_type %>"><%= message %></div>
 			<% end %>
-			<p><%= link_to "Sign up",    signup_path %></p>
-			<p><%= link_to "Log in",     login_path %></p>
+			<p><%= link_to "Sign up",     signup_path %></p>
+			<p><%= link_to "Log in",      login_path %></p>
+			<%= render 'about_Delfy' %>
 		</div>
 <% end %>
 <footer></footer>

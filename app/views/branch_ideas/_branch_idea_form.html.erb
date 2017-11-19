@@ -1,7 +1,22 @@
 <%= form_for(current_user.branch_ideas.build) do |f| %>
-    <%= f.text_area :content, placeholder: "Compose new branch idea: post your version of the root idea." %>
+    <%= f.text_area :content, placeholder: "Compose new branch idea: post your version of the root idea. (max 140 char.)" %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :community_id, value: current_community.id %>
     <%= f.hidden_field :idea_id, value: idea.id %>
-  <%= f.submit "Post" %>
+  	<div class="post-with-guide">
+  		<div>
+  			<%= f.submit "Post" %>
+  		</div>
+  		<div>
+  			<a class="mouse-over-guide">
+  				How?
+	  			<div class="tooltip">
+	  				<ul>
+	  					<li>Write your version of the root idea.</li>
+						  <li>Don’t name names.</li>
+					  </ul>
+				  </div>
+			  </a>
+  		</div>
+  	</div>
 <% end %>
