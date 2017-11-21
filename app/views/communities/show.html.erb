@@ -1,4 +1,5 @@
 <div class="community-page">
+	<%= current_community.name %>
 	<p><%= link_to 'Home', root_path %></p>
 	<% flash.each do |message_type, message| %>
 		<div class="alert alert-<%= message_type %>"><%= message %></div>

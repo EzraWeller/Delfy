@@ -35,4 +35,5 @@ class VotesController < ApplicationController
 				redirect_to request.referrer
 			end
 		end
+
 end

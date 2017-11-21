@@ -34,8 +34,6 @@ ActiveRecord::Schema.define(version: 20171116231220) do
     t.string   "description"
     t.integer  "leader"
     t.string   "membership_setting"
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_communities_on_deleted_at", using: :btree
   end
 
   create_table "ideas", force: :cascade do |t|

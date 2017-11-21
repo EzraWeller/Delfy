@@ -98,7 +98,7 @@ class CommunitiesController < ApplicationController
 
         def select_joined
             if !current_community.users.include?(current_user)
-                select_community(current_user.communities.first)
+                	select_community(current_user.communities.first) unless current_user.communities.count < 1
             end
         end
 

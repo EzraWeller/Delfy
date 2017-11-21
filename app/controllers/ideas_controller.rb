@@ -6,10 +6,10 @@ class IdeasController < ApplicationController
 		@idea = current_user.ideas.build(idea_params)
 		if @idea.save
 			flash[:success] = "Idea created!"
-			redirect_to root_url
+			redirect_to request.referrer
 		else
 			flash[:danger] = "Idea creation failed."
-			redirect_to root_url
+			redirect_to request.referrer
 		end
 	end
 
