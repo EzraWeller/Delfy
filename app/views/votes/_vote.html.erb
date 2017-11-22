@@ -1,7 +1,7 @@
 <div>
 	<%= form_for(:vote, url: votes_path, remote: true) do |f| %>
 		<%= f.hidden_field :user_id, value: current_user.id %>
-		<%= f.hidden_field :community_id, value: current_community.id %>
+		<%= f.hidden_field :community_id, value: i.community.id %>
 		<% if i.class == Idea %>
 			<%= f.hidden_field :idea_id, value: i.id %>
 			<%= f.hidden_field :root, value: true %>

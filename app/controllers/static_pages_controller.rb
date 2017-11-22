@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+    # before_action :select_joined, only: [:home]
 
     def home
   		@user = current_user
@@ -17,6 +18,13 @@ class StaticPagesController < ApplicationController
                 @dropdown_communities = current_user.communities - @menu_communities
             end
         end
+    end
+
+    def home_w_select
+        if current_user
+            select_community(current_user.communities.first) unless user_community_member?
+        end
+        redirect_to home_path
     end
 
     def about
@@ -61,5 +69,11 @@ class StaticPagesController < ApplicationController
             format.js
         end
     end
+
+    private
+
+        def select_joined
+            select_community(current_user.communities.first)
+        end
 
 end

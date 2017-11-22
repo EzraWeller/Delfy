@@ -2,7 +2,6 @@ class CommunitiesController < ApplicationController
 	before_action :logged_in_user,  only: [:create, :new, :show, :admin]
 	before_action :leader,          only: [:admin]
 	before_action :leader_or_admin, only: [:destroy, :update]
-	after_action  :select_joined,   only: [:show]
 
 	def show
     	@community = Community.find(params[:id])
@@ -95,11 +94,5 @@ class CommunitiesController < ApplicationController
     		@community = Community.find(params[:id])
     		@community.leader?(current_user) && @community.users.where.not(id: current_user.id).count == 0 || current_user.admin == true
     	end
-
-        def select_joined
-            if !current_community.users.include?(current_user)
-                	select_community(current_user.communities.first) unless current_user.communities.count < 1
-            end
-        end
 
 end
