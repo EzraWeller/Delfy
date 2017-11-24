@@ -40,13 +40,13 @@ class MembershipsController < ApplicationController
 		@reason = remove_params[:removal_reason]
 
 		@membership.removal_reason = @reason
-		if @membership.save
+		if @membership.save && !(@membership.removal_reason == "")
 			@user.leave(@community)
 			@user.votes.where(community: @community).destroy_all
 			@user.send_removal(@membership)
 			flash[:success] = "User membership removed and email sent."
 		else
-			flash[:danger] = "Failed to remove membership."
+			flash[:danger] = "Failed to remove membership. Removal reason is required."
 		end
 		redirect_to community_admin_path(@community)
 	end

@@ -81,7 +81,7 @@
 			    	"Open (Anyone can join.)", value: 'open' %></br>
 			    <%= f.radio_button :membership_setting, 'closed' %>
 			    <%= f.label :membership_setting, 
-			    	"Closed (Only users you invite or who have an access key can join.)", value: "restricted" %>
+			    	"Closed (Invited users only.)", value: "restricted" %>
 			<% end %>
 
 		    <%= f.submit "Save new community settings", data: {confirm: "Are you sure?"} %>
