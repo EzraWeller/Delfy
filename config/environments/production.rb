@@ -74,6 +74,14 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+  email: {
+    sender_address: %{"Delfy Exceptions" <noreply@delfy.us>},
+    exception_recipients: %w{delfyhelp@gmail.com}
+  }
+
+  config.action_mailer.perform_deliveries = true
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true

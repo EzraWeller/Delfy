@@ -54,4 +54,10 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  Rails.application.config.middleware.use ExceptionNotification::Rack,
+    email: {
+      sender_address: %{"Delfy Exceptions" <noreply@delfy.us>},
+      exception_recipients: %w{delfyhelp@gmail.com}
+    }
+
 end
