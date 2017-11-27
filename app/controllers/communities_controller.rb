@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-	before_action :logged_in_user,  only: [:create, :new, :show, :admin]
+	before_action :logged_in_user,  only: [:create, :new, :admin]
 	before_action :leader,          only: [:admin]
 	before_action :leader_or_admin, only: [:destroy, :update]
 
