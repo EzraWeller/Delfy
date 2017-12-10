@@ -5,11 +5,11 @@
 <% end %>
 		<div class="branch-top">
 			"<%= b.content %>"
+		</div>
+		<div class="branch-bottom">
 			<div class="base-idea-info">
 				<%= link_to b.community.name, community_path(b.community) %>
 			</div>
-		</div>
-		<div class="branch-bottom">
 			<div class="vote-button" id="<%= b.id %>_vote_form">
 				<% if current_user.votes.where(branch_idea: b).exists? %>
 					<%= render 'votes/unvote', i: b %>

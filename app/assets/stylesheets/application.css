@@ -149,9 +149,10 @@ body {
 	}
 }
 
-.community_feed {
+#community_feed {
 	width: 100%;
 	height: 100%;
+	margin-bottom: 20px;
 }
 
 .user-page, 
@@ -196,10 +197,6 @@ a.mouse-over-guide:hover {
 
 strong {
 	color: #1A9407;
-}
-
-nav.pagination {
-	padding-bottom: 15px;
 }
 
 .columns {
@@ -641,9 +638,9 @@ footer {
 
 .side-feed-root, .feed-branch-idea {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: space-between;
-	align-items: center;
+	align-items: start;
 	background: white;
 	padding: 5px 10px 5px 10px;
 	max-width: 300px;
@@ -661,11 +658,12 @@ footer {
 	font-size: 15px;
 }
 
-.root-bottom {
+.root-bottom, .branch-bottom {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	width: 95%;
 }
 
 .branch-idea {
@@ -680,13 +678,6 @@ footer {
 	border-radius: 1px;
 }
 
-.branch-bottom {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-}
-
 .branch-bottom-left {
 	font-size: 13px;
 }
@@ -699,10 +690,6 @@ footer {
 
 #sidebar-votes .root-bottom-left, #sidebar-votes .branch-bottom-left {
 	font-size: 11px;
-}
-
-.side-feed-root .root-top, .side-feed-branch .branch-top, .feed-branch-idea .branch-top {
-	max-width: 70%;
 }
 
 /* error messages */

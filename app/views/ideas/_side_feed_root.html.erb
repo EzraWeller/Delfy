@@ -5,11 +5,11 @@
 <% end %>
 		<div class="root-top">
 			"<%= idea.content %>"
+		</div>
+		<div class="root-bottom">
 			<div class="base-idea-info">
 				<%= link_to idea.community.name, community_path(idea.community) %>
 			</div>
-		</div>
-		<div class="root-bottom">
 			<div class="vote-button" id="<%= idea.id %>_vote_form">
 				<% if current_user.votes.where(idea: idea, root: true).exists? %>
 					<%= render 'votes/unvote', i: idea %>
