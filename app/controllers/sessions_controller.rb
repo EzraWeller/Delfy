@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
         @user.create_new_activation_digest
         @user.send_activation_email
         message = "Account not activated."
-        message += "Check your email for the activation link."
+        message += "A new activation email is being sent: check your email for the most recent activation link in a few minutes."
         flash[:warning] = message
         redirect_to root_url
       end
