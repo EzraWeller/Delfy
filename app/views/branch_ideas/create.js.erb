@@ -1,0 +1,7 @@
+<% sort_branch_ideas_by(@branch_idea.idea_id, "created_at") %>
+$("#<%= @branch_idea.idea_id %>_branch_feed").html(
+	'<%= escape_javascript(render "ideas/branch_feed", idea: @branch_idea.idea )%>'
+);
+$("#user_chunk").html(
+	'<%= escape_javascript(render "shared/user_chunk" )%>'
+);

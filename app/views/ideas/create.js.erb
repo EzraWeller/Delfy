@@ -1,0 +1,6 @@
+$("#idea_feed").html(
+	'<%= escape_javascript(render "ideas/idea_feed", idea_sort_style: "created_at" )%>'
+);
+$("#user_chunk").html(
+	'<%= escape_javascript(render "shared/user_chunk" )%>'
+);

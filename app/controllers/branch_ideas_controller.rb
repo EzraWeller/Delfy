@@ -5,8 +5,10 @@ class BranchIdeasController < ApplicationController
 	def create
 		@branch_idea = current_user.branch_ideas.build(branch_idea_params)
 		if @branch_idea.save
-			flash[:success] = "Branch idea created!"
-			redirect_to request.referrer
+			respond_to do |format|
+	            format.html { redirect_to request.referrer }
+	            format.js { flash[:success] = "Branch idea created! (but you are not currently voting for it)" }
+	        end
 		else
 			flash[:danger] = "Branch idea creation failed."
 			redirect_to request.referrer

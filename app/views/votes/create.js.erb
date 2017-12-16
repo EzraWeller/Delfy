@@ -1,5 +1,5 @@
-$("#user_vote_count").html(
-	'<%= current_user.votes.where(community_id: current_community.id).count %>'
+$("#user_chunk").html(
+	'<%= escape_javascript(render "shared/user_chunk" )%>'
 );
 $("#<%= @vote.idea_id %>_root_idea").html(
 	'<%= escape_javascript(render "ideas/root_idea", i: @vote.idea)%>'
@@ -20,4 +20,3 @@ $(".<%= @vote.idea_id %>.vote-count").html(
 );
 $(".<%= @vote.idea_id %>.base-idea").addClass('voted-for');
 $(".user-page-votes").html('<%= escape_javascript(render "users/user_vote_feed", user: @vote.user)%>');
-$("#sidebar-votes").html('<%= escape_javascript(render "users/home_vote_feed", user: @vote.user)%>');

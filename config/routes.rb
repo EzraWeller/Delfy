@@ -42,9 +42,9 @@ Rails.application.routes.draw do
                                        as: 'community_admin'
   post   '/communities/:id/admin', to: 'invitations#create_many',
                                        as: 'community_invites'
-  get    '/communities/:id/invite', to: 'invitations#invite_confirm',
+  get   '/communities/:id/invite', to: 'invitations#invite_confirm',
                                        as: 'invite_confirm'
-  post   '/communities/:id/invite', to: 'invitations#send_many',
+  post  '/communities/:id/invite', to: 'invitations#send_many',
                                        as: 'send_invites'
   patch '/memberships/:id/remove', to: 'memberships#remove',
                                        as: 'remove_member'

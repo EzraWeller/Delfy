@@ -1,4 +1,4 @@
-<%= form_for(current_user.ideas.build) do |f| %>
+<%= form_for(current_user.ideas.build, remote: true) do |f| %>
     <%= f.text_area :content, placeholder: "Compose new idea: what's the biggest problem you have in #{current_community.name}? (max 140 char.)" %>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :community_id, value: current_community.id %>

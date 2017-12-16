@@ -1,3 +1,26 @@
+<% if current_community.ideas.exists? %>
+	<div class="sort-buttons" id="idea_sort_buttons">
+		<div class="sort-buttons-1">
+			<div>Sort by:</div>
+			<div class="sort-button"><%= button_to "Top", sort_ideas_path, params: {sort_style: :votes_count}, 
+				:disabled => idea_sort_style == "votes_count", remote: true %></div>
+			<div class="sort-button"><%= button_to "New", sort_ideas_path, params: {sort_style: :created_at}, 
+				:disabled => idea_sort_style == "created_at", remote: true %></div>
+		</div>
+		<div class="sort-button">
+			<%= form_tag search_ideas_path, method: :get, remote: true do %>
+				<p>
+					<%= text_field_tag :search, params[:search] %>
+					<%= hidden_field_tag :community_id, current_community.id %>
+					<%= submit_tag "Search", name: nil %>
+				</p>
+			<% end %>
+		</div>
+	</div>
+<% else %>
+	<div>No ideas have been submitted yet!</div>
+<% end %>
+
 <% if idea_sort_style %>
 	<% sorted_ideas = current_community.ideas.reorder(idea_sort_style => :desc).page(params[:page]) %>
 <% else %>

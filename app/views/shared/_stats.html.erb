@@ -3,14 +3,15 @@
   <p><strong id="communitycount" class="stat">
     <%= @user.communities.count %>
   </strong>
-  communities</p>
+  <%= "community".pluralize(@user.communities.count) %></p>
   <p><strong id="ideacount" class="stat">
-    <%= @user.ideas.count %>
+    <%= @user.ideas.count + @user.branch_ideas.count %>
   </strong>
-  ideas submitted</p>
+  <%= "idea".pluralize(@user.ideas.count + @user.branch_ideas.count) %> submitted</p>
   <p class="stat">
     <% if current_community %>
-      <strong id="user_vote_count"><%= @user.votes.where(community_id: current_community.id).count %></strong> votes in <%= current_community.name %>
+      <strong id="user_vote_count"><%= @user.votes.where(community_id: current_community.id).count %></strong> 
+      <%= "vote".pluralize(@user.votes.where(community_id: current_community.id).count) %> in <%= current_community.name %>
     <% else %>
     <% end %>
   </p>

@@ -5,8 +5,10 @@ class IdeasController < ApplicationController
 	def create
 		@idea = current_user.ideas.build(idea_params)
 		if @idea.save
-			flash[:success] = "Idea created!"
-			redirect_to request.referrer
+			respond_to do |format|
+	            format.html { redirect_to request.referrer }
+	            format.js
+	        end
 		else
 			flash[:danger] = "Idea creation failed."
 			redirect_to request.referrer
