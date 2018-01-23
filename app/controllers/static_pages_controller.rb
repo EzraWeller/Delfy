@@ -70,6 +70,26 @@ class StaticPagesController < ApplicationController
         end
     end
 
+    def new_activation_email
+    end
+
+    def send_activation_email
+        @email = params[:email]
+        @user = User.find_by(email: @email)
+        if @user == nil
+            flash[:warning] = "No user on record with that email. No activation email sent."
+        elsif @user.activated == true
+            flash[:warning] = "The account with that email has already been activated."
+        else
+            @user.create_new_activation_digest
+            @user.send_activation_email
+            message = "A new activation email is being sent: 
+                       check your email for the most recent activation link in a few minutes."
+            flash[:success] = message
+        end
+        redirect_to root_url
+    end
+
     private
 
         def select_joined

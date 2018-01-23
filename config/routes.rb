@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   get    '/about',                 to: 'static_pages#about'
   post   '/select_community',      to: 'static_pages#set_community', 
                                         as: 'select_community'
+  get    '/new_activation',        to: 'static_pages#new_activation_email',
+                                        as: 'new_activation_email'
+  post   '/new_activation',        to: 'static_pages#send_activation_email',
+                                        as: 'send_activation_email'
   post   '/branch_feed',           to: 'static_pages#show_branch_feed',
                                         as: 'show_branch_feed'
   post   '/hide_branch_feed',      to: 'static_pages#hide_branch_feed',
