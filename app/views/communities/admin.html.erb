@@ -16,7 +16,7 @@
 		<div>
 			<h3>Current leader message</h3> 
 				<% if @community.leader_messages.exists? %>
-					<span class="alert-success">"<%= @community.leader_messages.last.content %>"</span>
+					<p class="leader-message">"<%= @community.leader_messages.last.content %>"</p>
 				<% else %>
 					-none-
 				<% end %>
@@ -24,7 +24,8 @@
 		</br>
 		<h3>Post new leader message</h3>
 		<%= form_for @community.leader_messages.build, remote: true do |f| %>
-			<%= f.text_area :content %>
+			<%= f.text_area :content, class: "char-counter", data: { 'length': 500 } %>
+			<span class="leader char-count">500</span>
 			<%= f.hidden_field :user_id, value: current_user.id %>
 			<%= f.hidden_field :community_id, value: @community.id %>
 
@@ -168,3 +169,41 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+  $(".char-counter").on("keyup",function(event){
+    checkTextAreaMaxLength(this,event);
+  });
+
+  /*
+  Check the MaxLength of the Textarea
+  -----------------------------------------------------
+  @prerequisite:  textBox = textarea dom element
+          e = textarea event
+                  length = Max length of characters
+  */
+  function checkTextAreaMaxLength(textBox, e) { 
+      
+      var maxLength = parseInt($(textBox).data("length"));
+      
+    
+      if (!checkSpecialKeys(e)) { 
+          if (textBox.value.length > maxLength - 1) textBox.value        = textBox.value.substring(0, maxLength);
+      } 
+      $(".char-count").html(maxLength - textBox.value.length);
+      
+      return true; 
+  }
+
+  /*
+  Checks if the keyCode pressed is inside special chars
+  -------------------------------------------------------
+  @prerequisite:  e = e.keyCode object for the key pressed
+  */
+  function checkSpecialKeys(e) { 
+      if (e.keyCode != 8 && e.keyCode != 46 && e.keyCode != 37 && e.keyCode != 38 && e.keyCode != 39 && e.keyCode != 40) 
+          return false; 
+      else 
+          return true; 
+  }
+</script>

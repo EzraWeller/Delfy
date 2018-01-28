@@ -1,5 +1,7 @@
 <%= form_for(current_user.branch_ideas.build, remote: true) do |f| %>
-    <%= f.text_area :content, placeholder: "Compose new branch idea: post your version of the root idea. (max 140 char.)" %>
+    <%= f.text_area :content, placeholder: "Compose new branch idea: post your version of the root idea.",
+        class: "char-counter", data: { 'length': 140 } %>
+    <span class="branch char-count">140</span>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :community_id, value: current_community.id %>
     <%= f.hidden_field :idea_id, value: idea.id %>
@@ -20,3 +22,41 @@
   		</div>
   	</div>
 <% end %>
+
+<script type="text/javascript">
+  $(".char-counter").on("keyup",function(event){
+    checkTextAreaMaxLength(this,event);
+  });
+
+  /*
+  Check the MaxLength of the Textarea
+  -----------------------------------------------------
+  @prerequisite:  textBox = textarea dom element
+          e = textarea event
+                  length = Max length of characters
+  */
+  function checkTextAreaMaxLength(textBox, e) { 
+      
+      var maxLength = parseInt($(textBox).data("length"));
+      
+    
+      if (!checkSpecialKeys(e)) { 
+          if (textBox.value.length > maxLength - 1) textBox.value        = textBox.value.substring(0, maxLength);
+      } 
+      $(".char-count").html(maxLength - textBox.value.length);
+      
+      return true; 
+  }
+
+  /*
+  Checks if the keyCode pressed is inside special chars
+  -------------------------------------------------------
+  @prerequisite:  e = e.keyCode object for the key pressed
+  */
+  function checkSpecialKeys(e) { 
+      if (e.keyCode != 8 && e.keyCode != 46 && e.keyCode != 37 && e.keyCode != 38 && e.keyCode != 39 && e.keyCode != 40) 
+          return false; 
+      else 
+          return true; 
+  }
+</script>
