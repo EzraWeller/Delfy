@@ -1,6 +1,11 @@
 <div class="base-idea-info">
 	Posted <%= time_ago_in_words(idea.created_at) %> ago by <%= User.find_by(id: idea.user_id).name %>
 </div>
+<% if idea.branches.count > 0 %>
+	<div class="branch-indicator">
+		<%= pluralize(idea.branches.count, 'branch') %>
+	</div>
+<% end %>
 <div class="vote-count">
 	<%= button_to hide_branch_feed_path, params: {idea: idea}, remote: true do %>
 		<%= material_icon.subdirectory_arrow_left.r90.md_36.css_class('hide-branches-icon') %>
