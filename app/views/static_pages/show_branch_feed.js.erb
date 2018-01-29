@@ -1,6 +1,9 @@
+$("#idea_feed").html(
+	'<%= escape_javascript(render "ideas/idea_feed" )%>'	
+);
 $("#<%= @idea.id %>_branch_feed").html(
 	'<%= escape_javascript(render "ideas/branch_feed", idea: @idea )%>'
 );
 $("#<%= @idea.id %>_feed_button").html(
-	'<%= escape_javascript(render "ideas/hide_branches_button", idea: @idea)%>'
+	'<%= escape_javascript(render "ideas/hide_branches_button", idea: @idea )%>'
 );

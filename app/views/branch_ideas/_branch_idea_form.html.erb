@@ -1,7 +1,7 @@
 <%= form_for(current_user.branch_ideas.build, remote: true) do |f| %>
     <%= f.text_area :content, placeholder: "Compose new branch idea: post your version of the root idea.",
-        class: "char-counter", data: { 'length': 140 } %>
-    <span class="branch char-count">140</span>
+        class: "#{idea.id} branch char-counter", data: { 'length': 140 } %>
+    <span class="branch char-count" id="<%= idea.id %>-char" data-num="<%= idea.id %>">140</span>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :community_id, value: current_community.id %>
     <%= f.hidden_field :idea_id, value: idea.id %>
@@ -24,8 +24,8 @@
 <% end %>
 
 <script type="text/javascript">
-  $(".char-counter").on("keyup",function(event){
-    checkTextAreaMaxLength(this,event);
+  $(".<%= idea.id %>.branch.char-counter").on("keyup",function(event){
+    checkBranchMaxLength(this,event);
   });
 
   /*
@@ -35,15 +35,15 @@
           e = textarea event
                   length = Max length of characters
   */
-  function checkTextAreaMaxLength(textBox, e) { 
+  function checkBranchMaxLength(textBox, e) { 
       
       var maxLength = parseInt($(textBox).data("length"));
       
     
       if (!checkSpecialKeys(e)) { 
-          if (textBox.value.length > maxLength - 1) textBox.value        = textBox.value.substring(0, maxLength);
+          if (textBox.value.length > maxLength - 1) textBox.value = textBox.value.substring(0, maxLength);
       } 
-      $(".char-count").html(maxLength - textBox.value.length);
+      $("#<%= idea.id %>-char").html(maxLength - textBox.value.length);
       
       return true; 
   }

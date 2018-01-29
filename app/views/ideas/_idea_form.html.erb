@@ -1,7 +1,7 @@
 <%= form_for(current_user.ideas.build, remote: true) do |f| %>
     <%= f.text_area :content, placeholder: "Compose new idea: what's the biggest issue or challenge you have in #{current_community.name}?", 
-        class: "char-counter", data: { 'length': 140 } %>
-    <span class="idea char-count">140</span>
+        class: "idea char-counter", data: { 'length': 140 } %>
+    <span class="idea char-count" id="idea-char">140</span>
     <%= f.hidden_field :user_id, value: current_user.id %>
     <%= f.hidden_field :community_id, value: current_community.id %>
   	<div class="post-with-guide">
@@ -23,8 +23,8 @@
 <% end %>
 
 <script type="text/javascript">
-  $(".char-counter").on("keyup",function(event){
-    checkTextAreaMaxLength(this,event);
+  $("#idea_content").on("keyup",function(event){
+    checkIdeaMaxLength(this,event);
   });
 
   /*
@@ -34,15 +34,15 @@
           e = textarea event
                   length = Max length of characters
   */
-  function checkTextAreaMaxLength(textBox, e) { 
+  function checkIdeaMaxLength(textBox, e) { 
       
       var maxLength = parseInt($(textBox).data("length"));
       
     
       if (!checkSpecialKeys(e)) { 
-          if (textBox.value.length > maxLength - 1) textBox.value        = textBox.value.substring(0, maxLength);
+          if (textBox.value.length > maxLength - 1) textBox.value = textBox.value.substring(0, maxLength);
       } 
-      $(".char-count").html(maxLength - textBox.value.length);
+      $("#idea-char").html(maxLength - textBox.value.length);
       
       return true; 
   }
